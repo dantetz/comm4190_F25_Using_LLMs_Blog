@@ -6,8 +6,11 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Dante">
+<meta name="dcterms.date" content="2025-09-12">
+<meta name="description" content="Asking LLM’s for help to decide what book to read for this class">
 
-<title>My Explorations with LLMs</title>
+<title>Book Reccomendation for Class – My Explorations with LLMs</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,26 +26,24 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-1713c1db1ad41a796903378fc9ac7b2b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-1713c1db1ad41a796903378fc9ac7b2b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -70,79 +71,21 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
 
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description","listing-categories"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../../styles.css">
 </head>
 
-<body class="nav-fixed quarto-light">
+<body class="nav-fixed fullcontent quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top quarto-banner">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
     </a>
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">My Explorations with LLMs</span>
     </a>
   </div>
@@ -153,7 +96,7 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link" href="../../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item compact">
@@ -176,108 +119,151 @@ window.Quarto = {
 <!-- content -->
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-page-left">
-      <h1 class="title">My Explorations with LLMs</h1>
-                      </div>
+    <div class="quarto-title column-body">
+      <h1 class="title">Book Reccomendation for Class</h1>
+                  <div>
+        <div class="description">
+          Asking LLM’s for help to decide what book to read for this class
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">LLMs</div>
+                <div class="quarto-category">Learning</div>
+              </div>
+                  </div>
   </div>
     
   
-  <div class="quarto-title-meta column-page-left">
+  <div class="quarto-title-meta">
 
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Dante </p>
+            </div>
+    </div>
       
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">September 12, 2025</p>
+      </div>
+    </div>
     
       
     </div>
     
   
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(2)</span></div><div class="category" data-category="TGVhcm5pbmc=">Learning <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TExNcw==">LLMs <span class="quarto-category-count">(2)</span></div><div class="category" data-category="bG9naWM=">logic <span class="quarto-category-count">(1)</span></div><div class="category" data-category="cHJvbXB0aW5n">prompting <span class="quarto-category-count">(1)</span></div></div></div>
+    
 <!-- main -->
-<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
+<main class="content quarto-banner-title-block" id="quarto-document-content">
 
 
 
 
 
+<section id="book-reccomendation-for-class" class="level1">
+<h1>Book Reccomendation for Class</h1>
+<p><em>Although I have already been assigned the book that I will be using for the “living with a book” assignment, I wanted to see what our LLM would produce when asking it about what book I should read</em></p>
+<section id="prompt" class="level2">
+<h2 class="anchored" data-anchor-id="prompt">Prompt</h2>
+<p>I have a semester long project in my class in which I will carry a book around with me the entire time. These are the book options: Buolamwini, Joy (2024). Unmasking AI: My Mission to Protect What Is Human in a World of Machines. Random House. Mollick, Ethan (2024). Co-Intelligence Living and Working with AI. Penguin. Summerfield, Christopher (2025). These Strange New Minds. How AI Learned to Talk and What It Means. Penguin. Bender, Emily &amp; Hanna, Alex (2025). The AI Con. How to Fight Big Tech’s Hype and Create the Future We Want. HarperCollins. Bennett, Max (2023). A Brief History of Intelligence Evolution, AI, and the Five Breakthroughs That Made Our Brains. HarperCollins. Hoffman, Reid &amp; Beato, Greg (2025). Superagency. What Could Possibly Go Right with Our AI Future. Authors Equity. Ananthaswamy, Anil (2024). Why Machines Learn. The Elegant Math Behind Modern AI. Penguin. Which book should I choose?</p>
+</section>
+<section id="prompt-response" class="level2">
+<h2 class="anchored" data-anchor-id="prompt-response">Prompt Response</h2>
+<p>Good question! Picking a book you’ll carry all semester depends on what you want out of the class: Do you want something more technical, more ethical / policy-oriented, more futuristic, more mathematical, more action / change oriented, etc.? I can walk you through how a few of these differ and which might suit different priorities—and then I can recommend one that seems strong for many students. You can use that plus your own preferences.</p>
+<hr>
+<p>Here’s a breakdown of some of the options, strengths &amp; trade-offs:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Book</th>
+<th>What it focuses on / key themes</th>
+<th>What you’ll likely get out of it (benefits)</th>
+<th>Potential downsides or what it may <em>not</em> provide as much of</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Unmasking AI</strong> by Joy Buolamwini (2024)</td>
+<td>A mixture of memoir + research; how bias, exclusion, discrimination show up in AI systems (especially vision / facial recognition), “coded gaze”, algorithmic justice, the social &amp; ethical side of AI. (<a href="https://www.superagency.ai/?utm_source=chatgpt.com" title="Superagency - What Could Possibly Go Right with Our AI Future">PenguinRandomhouse.com</a>)</td>
+<td>Very compelling if you care about ethics, fairness, social justice, human-rights implications, how people are affected. Good stories, good for framing AI in the real world. Makes ethical questions concrete. Great if you want to push for change or policy.</td>
+<td>Might not go deep into the mathematics or the nuts &amp; bolts of how AI works technically; might be less forward-looking in terms of speculative AI futures or cutting edge breakthroughs. If you want hard tech / math, this may feel lighter.</td>
+</tr>
+<tr class="even">
+<td><strong>The AI Con: How to Fight Big Tech’s Hype and Create the Future We Want</strong> by Emily Bender &amp; Alex Hanna (2025)</td>
+<td>Critiques of hype in AI; demystifies what AI is/what it isn’t; shows how “Big Tech” uses hype; tools for deconstructing narratives; looks at ethical, social, economic, political impact, and power dynamics. (<a href="https://techcrunch.com/2025/01/26/why-reid-hoffman-feels-optimistic-about-our-ai-future/?utm_source=chatgpt.com" title="Why Reid Hoffman feels optimistic about our AI future">The Guardian</a>)</td>
+<td>Very strong if you want a critical lens; good for debates, policy, media literacy. If part of your project involves thinking about what people believe about AI, or how to push back / shape future AI use, this would give you a lot of material. Also timely.</td>
+<td>Might be less inspiring if you want more optimistic / pro-technology vision; might be critical in tone (which you may like, but if you want something more balanced or future-imagining, may feel heavy). Possibly less technical detail.</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<p>Then there are some of the others that might offer different strengths. (I didn’t find as much detail in my quick search for all of them, so I’ll approximate.)</p>
+<ul>
+<li><em>Co-Intelligence: Living and Working with AI</em> (Ethan Mollick) – likely more about collaboration human + AI; maybe more about how we integrate AI in real life / organizations.</li>
+<li><em>These Strange New Minds</em> (Christopher Summerfield) – sounds like it might explore how AI “learns to talk” and its implications; maybe more cognitive / neuroscientific / psychology aspects.</li>
+<li><em>Why Machines Learn: The Elegant Math Behind Modern AI</em> (Anil Ananthaswamy) – more mathematical / technical depth; good if you want to understand models, algorithms, math behind AI.</li>
+<li><em>Superagency</em> (Reid Hoffman &amp; Greg Beato) – may lean toward what good futures might look like; more optimistic, imagining possibilities.</li>
+<li><em>A Brief History of Intelligence, Evolution, AI, and the Five Breakthroughs …</em> (Max Bennett) – if you like history, evolution of intelligence, deep thinking over time; may offer a broad lens.</li>
+</ul>
+<hr>
+<p><strong>My recommendation</strong>:</p>
+<p>If I were in your shoes, and wanted a book that balances ethical impact, relevance, good for discussions &amp; projects, and helps me understand both what’s wrong and what to think about going forward, I’d pick <strong>Unmasking AI</strong> by Joy Buolamwini. It gives strong grounding in how the real world is affected — bias, justice, societal harm — but also pushes you to think about what should be done. Plus, it has good narrative elements, which makes it engaging all semester.</p>
+<p>If instead you are more interested in critiquing current hype, power structures, narratives, etc., then <em>The AI Con</em> is also very strong.</p>
+<p>If you tell me what your project is (theme / angle), or what you care most about (ethics, math, future, social justice, etc.), I can help you pick the <em>best</em> for <em>you</em>. Do you want me to match to your interests?</p>
+</section>
+<section id="follow-up" class="level2">
+<h2 class="anchored" data-anchor-id="follow-up">Follow Up</h2>
+<p>I would like a book with a pro AI argument. Which book should I choose?</p>
+</section>
+<section id="second-response" class="level2">
+<h2 class="anchored" data-anchor-id="second-response">Second Response</h2>
+<p>If you want a book that makes a <strong>pro-AI</strong> or at least optimistic/pro-AI argument, here are the best picks from your list — and which one I’d pick:</p>
+<hr>
+</section>
+<section id="strongest-pro-ai-optimistic-options" class="level2">
+<h2 class="anchored" data-anchor-id="strongest-pro-ai-optimistic-options">Strongest “Pro-AI / Optimistic” Options</h2>
+<p>These books argue that AI can bring benefits, enhancements, or positive futures, rather than mostly warning about harms.</p>
+<ol type="1">
+<li><p><strong>Superagency</strong> by Reid Hoffman &amp; Greg Beato (2025)</p>
+<ul>
+<li>Very much a positive / forward-looking argument. The authors argue that AI can <em>increase human agency</em>, act as a partner &amp; amplifier in work, education, healthcare, etc. (<a href="https://www.superagency.ai/?utm_source=chatgpt.com" title="Superagency - What Could Possibly Go Right with Our AI Future">Superagency</a>)</li>
+<li>They call for embracing AI, navigating its risks responsibly, but not letting fear freeze progress. (<a href="https://techcrunch.com/2025/01/26/why-reid-hoffman-feels-optimistic-about-our-ai-future/?utm_source=chatgpt.com" title="Why Reid Hoffman feels optimistic about our AI future">TechCrunch</a>)</li>
+</ul></li>
+<li><p><strong>Co-Intelligence: Living and Working with AI</strong> by Ethan Mollick (2024)</p>
+<ul>
+<li>This also has a generally positive stance: how humans and AI can collaborate; how using AI well can supercharge thinking &amp; productivity. (<a href="https://www.middleweb.com/50602/what-to-expect-from-ai-in-class-and-beyond/?utm_source=chatgpt.com" title="Co-Intelligence: Living and Working with AI">MiddleWeb</a>)</li>
+<li>It gives guidance / rules for how to engage with AI in practice (human‐in-the-loop, treating AI like a collaborator, etc.). (<a href="https://www.forbes.com/sites/peterhigh/2024/05/07/ethan-mollick-on-the-four-rules-of-co-intelligence-with-ai/?utm_source=chatgpt.com" title="Ethan Mollick On The Four Rules Of Co-Intelligence With AI">Forbes</a>)</li>
+</ul></li>
+</ol>
+<hr>
+</section>
+<section id="comparison-which-id-pick" class="level2">
+<h2 class="anchored" data-anchor-id="comparison-which-id-pick">Comparison &amp; Which I’d Pick</h2>
+<ul>
+<li><strong>Superagency</strong> is more visionary, big picture, and optimistically ambitious. If you like imagining transformative futures, agency, what’s possible broadly, this is very strong.</li>
+<li><strong>Co-Intelligence</strong> is more practical, about day-to-day work, how people can actually use AI now, what to watch out for, how to adapt. If you want something you can apply sooner, that’s very useful.</li>
+</ul>
+<hr>
+</section>
+<section id="my-recommendation" class="level2">
+<h2 class="anchored" data-anchor-id="my-recommendation">My Recommendation</h2>
+<p>If I were you and wanted a book with a <em>pro-AI argument</em>, I’d pick <strong>Superagency</strong> by Reid Hoffman &amp; Greg Beato. It seems to lean more strongly toward an optimistic case, gives you inspiration + arguments for the future, which could be great for class discussions, essays, and imaginative projects.</p>
+<p>If you want, I can also list some pros and cons of <em>Superagency</em> to make sure it aligns with your style / what you’re comfortable defending, so you’re confident with it. Do you want that?</p>
+</section>
+<section id="overall-thoughts" class="level2">
+<h2 class="anchored" data-anchor-id="overall-thoughts">Overall Thoughts</h2>
+<p>I thought the LLM did a solid job of adjusting to the different preference that I provided regarding the specific positions and ideas of the book.</p>
 
 
+</section>
+</section>
 
-
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="TExNcyUyQ0xlYXJuaW5n" data-listing-date-sort="1757635200000" data-listing-file-modified-sort="1757876615981" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="11" data-listing-word-count-sort="2072">
-<div class="thumbnail"><a href="./posts/001_Post_Book_Rec/Book_Rec.html" class="no-external">
-
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/001_Post_Book_Rec/Book_Rec.html" class="no-external">Book Reccomendation for Class</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('TExNcw=='); return false;">LLMs</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('TGVhcm5pbmc='); return false;">Learning</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/001_Post_Book_Rec/Book_Rec.html" class="no-external">
-<p>Asking LLM’s for help to decide what book to read for this class</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/001_Post_Book_Rec/Book_Rec.html" class="no-external">
-<div class="listing-date">
-Sep 12, 2025
-</div>
-<div class="listing-author">
-Dante
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-categories="TExNcyUyQ3Byb21wdGluZyUyQ2xvZ2lj" data-listing-date-sort="1706832000000" data-listing-file-modified-sort="1757876615981" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="450">
-<div class="thumbnail"><a href="./posts/000_test_post/index.html" class="no-external">
-
-<p class="card-img-top"><img src="posts/000_test_post/gpt3-5.png"  class="thumbnail-image card-img"/></p>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/000_test_post/index.html" class="no-external">A test post</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('TExNcw=='); return false;">LLMs</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('cHJvbXB0aW5n'); return false;">prompting</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('bG9naWM='); return false;">logic</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/000_test_post/index.html" class="no-external">
-<p>An example post from a Jupyter notebook</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/000_test_post/index.html" class="no-external">
-<div class="listing-date">
-Feb 2, 2024
-</div>
-<div class="listing-author">
-An LLM User
-</div>
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">No matching items</div>
-</div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
