@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.24">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Dante">
+<meta name="dcterms.date" content="2025-09-14">
+<meta name="description" content="Asking LLM’s for help to decide what flight to take to Sydney, Australia">
+
+<title>Flight Options for Australia – My Explorations with LLMs</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-1713c1db1ad41a796903378fc9ac7b2b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed fullcontent quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">My Explorations with LLMs</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com"> <i class="bi bi-twitter" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Flight Options for Australia</h1>
+                  <div>
+        <div class="description">
+          Asking LLM’s for help to decide what flight to take to Sydney, Australia
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">LLMs</div>
+                <div class="quarto-category">Learning</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Dante </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">September 14, 2025</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+<section id="flight-options-for-australia" class="level1">
+<h1>Flight Options for Australia</h1>
+<p>I will be asking LLMs to provide me with flight options from my home in New York to Sydney, Australia, where I will be studying abroad next semester.</p>
+<section id="prompt" class="level2">
+<h2 class="anchored" data-anchor-id="prompt">Prompt</h2>
+<p>I need reccomendations for flight options from New York City (any of the three airports) to Sydney Australia during the first week of January in 2026. Consider prices, flight time, number of stops. Give me numerous different options in each of those three categories and explain what rational you think I should use.</p>
+<p>Here are a bunch of flight‐option ideas and strategies for traveling from New York City (JFK / EWR / LGA) to Sydney (SYD) in the first week of January 2026. I don’t have live fares for those exact dates, but I’ve pulled together recent pricing &amp; routing data so you can plan. I also include rationales for what tradeoffs to make (price vs time vs stops).</p>
+<hr>
+</section>
+<section id="what-the-current-data-suggests" class="level2">
+<h2 class="anchored" data-anchor-id="what-the-current-data-suggests">What the current data suggests</h2>
+<p>Some up-front data and norms:</p>
+<ul>
+<li>Round-trip ticket from New York (JFK) → Sydney tends to run <strong>US$1,500-2,200</strong> in economy for non-last-minute booking. (<a href="https://thepointsguy.com/airline/reviews/qantas-premium-economy-review/?utm_source=chatgpt.com" title="Qantas A380 premium economy class flight review">Singapore Airlines</a>)</li>
+<li>Flight time (air time, not including layovers) for a typical one-stop itinerary is around <strong>20-26 hours</strong> depending on routing and layover airport. (<a href="https://havewheelchairwilltravel.net/qantas-airbus-a380-premium-economy-class-review/?utm_source=chatgpt.com" title="Qantas Airbus A380 Premium Economy class review">FlightConnections</a>)</li>
+<li>There are no (or very few) true nonstop flights currently from NYC → SYD (though Qantas is working on ultra-long “Project Sunrise” nonstops). (<a href="https://liveandletsfly.com/qantas-a380-premium-economy-class-review/?utm_source=chatgpt.com" title="Review: Qantas A380 Premium Economy Class Los Angeles">Qantas News Room</a>)</li>
+</ul>
+<hr>
+</section>
+<section id="suggested-options-with-trade-offs" class="level2">
+<h2 class="anchored" data-anchor-id="suggested-options-with-trade-offs">Suggested Options (with trade-offs)</h2>
+<p>Here are different flight options categorized by price, flight time, and number of stops, plus rationales.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 8%">
+<col style="width: 17%">
+<col style="width: 14%">
+<col style="width: 17%">
+<col style="width: 42%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Option</th>
+<th>Representative Price Estimate*</th>
+<th>Stop(s)</th>
+<th>Total Travel Time Estimate*</th>
+<th>Strengths / Weaknesses</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Cheapest possible</strong></td>
+<td>~$1,500-$1,800 round trip (economy)</td>
+<td>1 or 2 stops; possibly longer layovers</td>
+<td>Likely 25-30+ hours or more including layover</td>
+<td>Good if cost is your priority and you don’t mind long travel. Might be a less comfortable itinerary, possibly odd connections or overnight layovers.</td>
+</tr>
+<tr class="even">
+<td><strong>Balanced option</strong></td>
+<td>~$1,800-$2,100</td>
+<td>1 stop, decent layover (2-4 hrs)</td>
+<td>~22-26 hours total</td>
+<td>This is often the sweet spot—fair price, not too many stops, manageable total travel time.</td>
+</tr>
+<tr class="odd">
+<td><strong>Fastest / Most convenient</strong></td>
+<td>Could be $2,200-$3,000+ (economy) or more if premium cabin</td>
+<td>Usually 1 stop (or if non-stop becomes available)</td>
+<td>~20-22 hours or less if very good routing and minimal layover</td>
+<td>Best if you value comfort, less fatigue, want to get there quicker; but pay substantially more.</td>
+</tr>
+</tbody>
+</table>
+<blockquote class="blockquote">
+<p>* Estimates; actual will depend on when you book, which airline, how many stops, how long layovers are, etc.</p>
+</blockquote>
+<hr>
+</section>
+<section id="possible-routes-airlines-to-look-for" class="level2">
+<h2 class="anchored" data-anchor-id="possible-routes-airlines-to-look-for">Possible Routes / Airlines to Look For</h2>
+<p>Here are some carriers and route patterns you should check. These give different tradeoffs in stops / layovers / cost.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Airline / Route Pattern</th>
+<th>What to Expect</th>
+<th>Pros</th>
+<th>Cons</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>United (via west coast or via Asia Pacific)</strong></td>
+<td>Often 1 stop (LAX, SFO, or somewhere in Asia), reasonable layover</td>
+<td>Reliable service, good schedules, could get better price if you catch a deal</td>
+<td>Travel time can get long; west coast stop adds extra flying; crossing pacific + then intra-Australia can add fatigue.</td>
+</tr>
+<tr class="even">
+<td><strong>Qantas / Partner airlines (via e.g.&nbsp;Auckland, or stop in Asia)</strong></td>
+<td>Qantas sometimes routes via AKL, or partners; also keep an eye on the upcoming non-stop service (if it begins) from NYC to Sydney under “Project Sunrise”. (<a href="https://liveandletsfly.com/qantas-a380-premium-economy-class-review/?utm_source=chatgpt.com" title="Review: Qantas A380 Premium Economy Class Los Angeles">Qantas News Room</a>)</td>
+<td>Good service, maybe more premium product; possibility of shorter total journey if they roll out non-stop or near non-stop</td>
+<td>More expensive; fewer flight times/frequencies; if non-stop isn’t yet operating, routing might be inconvenient or involve long flights.</td>
+</tr>
+<tr class="odd">
+<td><strong>Singapore Airlines, Air Canada, etc. via Asia / Pacific hubs</strong></td>
+<td>May route through Singapore, Hong Kong, or Vancouver; longer but maybe cheaper during off-peak or with good connection timing. (<a href="https://thepointsguy.com/airline/reviews/qantas-premium-economy-review/?utm_source=chatgpt.com" title="Qantas A380 premium economy class flight review">Singapore Airlines</a>)</td>
+<td>Can find good deals; maybe more comfortable or nicer service if flying premium parts of the route; flexibility in departure airport.</td>
+<td>More stops or longer layovers; potentially tiring; risk of delays or missed connections increases.</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="example-scenarios-you-might-choose" class="level2">
+<h2 class="anchored" data-anchor-id="example-scenarios-you-might-choose">Example Scenarios You Might Choose</h2>
+<p>Here are a few hypothetical flight options (not exact but plausible) for early January 2026, to illustrate choices:</p>
+<ol type="1">
+<li><p><strong>Lowest fare option</strong> Depart from EWR, go via LAX, then onward to Sydney with a long layover. Total ~30+ hours. Cost might be ~$1,600-1,800. Use this if budget is tight.</p></li>
+<li><p><strong>Balanced comfort</strong> Depart JFK, 1 stop in Asia (e.g.&nbsp;Tokyo, Hong Kong or Singapore), decent layover 2-3 hrs, then onward to SYD. Total time ~23-26 hours. Maybe ~$1,900-$2,200 depending on airline &amp; cabin.</p></li>
+<li><p><strong>Fastest / Premium / Almost non-stop</strong> If Qantas’s non-stop (or almost non-stop) is or becomes available, or a route with minimal layover (say ~1 hr) via Auckland (if that works), you might do it in ~20-22 hours. Price maybe ~$2,500+ in economy, or much higher for premium. Prefer this if minimizing travel fatigue is very important.</p></li>
+</ol>
+<hr>
+</section>
+<section id="what-i-recommend-you-do-strategy" class="level2">
+<h2 class="anchored" data-anchor-id="what-i-recommend-you-do-strategy">What I Recommend You Do: Strategy</h2>
+<p>To pick the best flight, here’s a recommended strategy:</p>
+<ul>
+<li><strong>Book early.</strong> January is high season for Australia since it’s summer there. Prices tend to rise closer to date.</li>
+<li><strong>Be flexible on departure airport</strong> (JFK vs EWR vs even LGA for connections). EWR might offer cheaper or better connections depending on airline.</li>
+<li><strong>Be flexible on stopover city</strong>: sometimes going via Asia or via Auckland gives a better total cost even if it adds flying time.</li>
+<li><strong>Balance layover vs cost</strong>: a cheap flight with a 10+ hour layover can be almost as bad (from fatigue/time cost) as paying more for a shorter itinerary.</li>
+<li><strong>Watch for sales / alerts</strong>: airlines often discount around certain times; set price alerts.</li>
+<li><strong>Consider premium economy or business if budget allows</strong>: it costs more up-front but for a long haul, the added comfort (seat space, meals, rest) can make a large difference.</li>
+</ul>
+<hr>
+<p>If you want, I can pull up <em>actual flight itineraries</em> for your exact dates (first week of January 2026) with live or near-live prices from all three NYC airports, and show you a comparison table. Do you want me to do that?</p>
+</section>
+<section id="follow-up-prompt" class="level2">
+<h2 class="anchored" data-anchor-id="follow-up-prompt">Follow Up Prompt</h2>
+<p>Consider the online reviews for each of these airlines and explain how you reccomend taking them into account.</p>
+</section>
+<section id="second-response" class="level2">
+<h2 class="anchored" data-anchor-id="second-response">Second Response</h2>
+<p>When you’re evaluating flight options, the airline itself matters a lot — not just price, number of stops, or duration, but <em>how well they operate</em> on long-haul flights: comfort, service, reliability, disruptions, etc. Looking at online reviews gives you good insights into those things. I pulled together what reviews say about some of the carriers you may deal with (like United, Qantas) and then give you suggestions on how to use that info in your decision-making.</p>
+<hr>
+</section>
+<section id="what-reviews-say-for-some-likely-airlines" class="level2">
+<h2 class="anchored" data-anchor-id="what-reviews-say-for-some-likely-airlines">What reviews say (for some likely airlines)</h2>
+<p>Here are strengths and complaints from recent reviews of airlines like Qantas and United, especially for long haul / premium economy / economy and what travelers say matters most.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Airline</th>
+<th>What people like</th>
+<th>Common complaints / weak points</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Qantas</strong></td>
+<td>• Premium economy is often praised: more legroom, much better comfort than standard economy. The food and service are generally good. (<a href="https://thepointsguy.com/airline/reviews/qantas-premium-economy-review/?utm_source=chatgpt.com" title="Qantas A380 premium economy class flight review">The Points Guy</a>) <br>• Cabin environment (seat design, in-flight service, snacks, amenities) gets positive mention. (<a href="https://havewheelchairwilltravel.net/qantas-airbus-a380-premium-economy-class-review/?utm_source=chatgpt.com" title="Qantas Airbus A380 Premium Economy class review">Have Wheelchair Will Travel</a>) <br>• Thoughtful extras (blankets, pillows, entertainment) seem to be above average in many reviews. (<a href="https://liveandletsfly.com/qantas-a380-premium-economy-class-review/?utm_source=chatgpt.com" title="Review: Qantas A380 Premium Economy Class Los Angeles">Live and Let’s Fly</a>)</td>
+<td>• Some complaints about cramped feel even in premium economy (especially in middle seats or when seat pitch isn’t generous) → even with a better class, discomfort remains for some. (<a href="https://thepointsguy.com/airline/reviews/qantas-premium-economy-review/?utm_source=chatgpt.com" title="Qantas A380 premium economy class flight review">The Points Guy</a>) <br>• WiFi sometimes missing or inconsistent. (<a href="https://thealviator.com/2024/09/qantas-a380-premium-economy/?utm_source=chatgpt.com" title="Review: Qantas A380 Premium Economy (SIN-LHR)">The Alviator</a>) <br>• Issues in ground-experience / handling (connections, delays, etc.) occasionally mentioned. (<a href="https://thepointsguy.com/airline/reviews/qantas-premium-economy-review/?utm_source=chatgpt.com" title="Qantas A380 premium economy class flight review">The Points Guy</a>)</td>
+</tr>
+<tr class="even">
+<td><strong>United Airlines</strong></td>
+<td>• United’s “Premium Plus” (their upgraded economy / premium economy) is liked by people who took longer flights: the extra space is appreciated, better seats, more comfort. (<a href="https://havewheelchairwilltravel.net/united-airlines-premium-plus-review/?utm_source=chatgpt.com" title="United Airlines Premium Plus review">Have Wheelchair Will Travel</a>) <br>• Some reviews say United has improved food, bedding, service in business / Polaris cabins. (<a href="https://liveandletsfly.com/great-united-airlines-flight/?utm_source=chatgpt.com" title="Best United Airlines Flight: Polaris Business Class Review">Live and Let’s Fly</a>) <br>• In economy, some reviews say it’s “better than expected” given the cutbacks and cost pressures; people note it’s not luxury, but tolerable. (<a href="https://www.travelcodex.com/review-united-boeing-777-economy-class-san-francisco-to-frankfurt/?utm_source=chatgpt.com" title="Review: United Boeing 777 Economy Class, San Francisco ...">Travel Codex</a>)</td>
+<td>• Basic amenities are sometimes described as underwhelming: basic headphones, thin blankets, service feels minimal. For long flights, these small things add up. (<a href="https://travelseewrite.com/united-airlines-international-flight-experience/?utm_source=chatgpt.com" title="Why I'll Never Fly United Airlines Internationally Again">travelseewrite</a>) <br>• Complaints about delays, handling of connections, customer service when things go wrong. United is a large carrier; more volume means more risk of disruptions. <br>• Occasionally, legroom / seat comfort in standard economy is criticized. On longer flights, people feel fatigue.</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="how-to-take-reviews-into-account-what-to-use-what-to-be-cautious-about" class="level2">
+<h2 class="anchored" data-anchor-id="how-to-take-reviews-into-account-what-to-use-what-to-be-cautious-about">How to take reviews into account (“what to use, what to be cautious about”)</h2>
+<p>Reviews are sometimes subjective, sometimes inconsistent, but there are patterns you can extract. Here’s how to use them when choosing a flight:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 15%">
+<col style="width: 33%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>What to Pay Special Attention To</th>
+<th>Why It Matters</th>
+<th>How to Check / Mitigate Risk</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Seat comfort (pitch, width, recline)</strong>, particularly in economy or premium economy</td>
+<td>For a ~20-30 hour flight, how well you rest or sleep will greatly affect how you feel when you arrive. Tight seats or uncomfortable recline can make long flights brutal.</td>
+<td>Look for what reviewers say about specific aircraft models that will be used on the route. Choose seats in better rows (bulkhead, aisle, window depending on preference). If possible, pay extra for premium economy or better.</td>
+</tr>
+<tr class="even">
+<td><strong>Amenities</strong> (blankets, pillows, in-flight entertainment, WiFi, power ports)</td>
+<td>These help during long flights: entertainment helps kill time; WiFi lets you stay productive or entertained; power ports let you charge devices.</td>
+<td>When booking, see what class you’re in and whether that itinerary’s plane offers those extras. Reviews often mention what was <em>not</em> offered, which is useful. Also check airline’s website for specs.</td>
+</tr>
+<tr class="odd">
+<td><strong>Service reliability, delays &amp; connections</strong></td>
+<td>A cheap flight with many or long layovers, or with an airline prone to delays, can cost you time, stress, missed connections, etc. Especially on long journeys like to Australia, delays multiply.</td>
+<td>Try to pick itineraries with fewer stops. Pick airlines/hubs that have better punctuality ratings. Look at reviews for recent years (2024-2025) rather than old ones. Also look for the airline’s track record for handling disruption; do they provide hotel / meal vouchers if delayed overnight?</td>
+</tr>
+<tr class="even">
+<td><strong>Food / meal quality, rest capability</strong></td>
+<td>On long flights you’ll eat a couple times and want to rest. If meals are bad, or rest is poor (no recline or legroom), your experience will suffer.</td>
+<td>Reviewers often mention whether meals are edible/varied, or if service is spaced (not crowded tray service rushing). Also check recline and how dark/quiet the cabin tends to be in reviews.</td>
+</tr>
+<tr class="odd">
+<td><strong>Ground experience</strong> (airport, check-in, boarding, customer service when things go wrong)</td>
+<td>Even if your flight is good, airport delays, check-in chaos, or difficult customer service when issues arise can ruin the trip.</td>
+<td>See what people say about specific airports / airlines in NYC → SYD routes (e.g.&nbsp;layover airports). Pick airlines with decent reputation in those hubs. Also give yourself buffer time for connections.</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="how-that-influences-recommendations" class="level2">
+<h2 class="anchored" data-anchor-id="how-that-influences-recommendations">How that influences recommendations</h2>
+<p>Putting together what people say + what you’ll likely value, here’s how I’d adjust or weigh different flight options based on reviews:</p>
+<ul>
+<li><p>If airline reviews show that the premium economy / upgraded economy (or whatever class you’d be getting) is significantly better (seat comfort, service) and price difference isn’t huge, going for that is probably worth it for such a long flight.</p></li>
+<li><p>If you pick a route with one stop via a hub with good reviews (including layover terminal quality, smooth transfers), that’s better than cheaper flights with many stops or layovers in airports with bad experiences.</p></li>
+<li><p>I might give a small premium to airlines like Qantas, especially for the long segment over the Pacific, if reviews suggest better rest, better service (meals, cleanliness) — because arriving well rested makes a big difference.</p></li>
+<li><p>Conversely, if an airline gets poor reviews in the aspects you care most about (comfort, service, treating delays well), then to tolerate that, you’d want more buffer time (longer connection), maybe a more expensive ticket with more reliability, etc.</p></li>
+</ul>
+<hr>
+<p>If you want, I can pull up <strong>recent review scores</strong> (e.g.&nbsp;Skytrax, independent traveler reports) for each airline on the likely routes you’ll consider, so you can see a comparison side-by-side. Do you want me to do that?</p>
+</section>
+<section id="reflection" class="level2">
+<h2 class="anchored" data-anchor-id="reflection">Reflection</h2>
+<p>The LLM was able to provide a helpful and thorough analysis of different airline and flight options. It struggled when I asked it to pull specific price comparisons from different dates, but it did an adequate job of providing reviews from online sources. Overall, I was satisfied with the responses.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/dantetz\.github\.io\/comm4190_F25_Using_LLMs_Blog\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

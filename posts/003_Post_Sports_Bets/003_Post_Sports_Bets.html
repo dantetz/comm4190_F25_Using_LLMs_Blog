@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.24">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Sports Betting Options – My Explorations with LLMs</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-1713c1db1ad41a796903378fc9ac7b2b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed fullcontent quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">My Explorations with LLMs</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com"> <i class="bi bi-twitter" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Sports Betting Options</h1>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+<div id="255bff3b-12cd-455e-b6f5-62aee13f4d70" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">---</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>title: <span class="st">"Sports Bet Options"</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>description: <span class="st">"Asking LLM's for help to bets to make with Free Money"</span> </span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>author: <span class="st">"Dante Zugman"</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>date: <span class="st">"9/14/2025"</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>categories:</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span> LLMs</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span> Learning</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="op">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><em>I will be asking LLMs what sports betting options they reccomend considering a specified level of acceptable risk, an amount of money willing to be risked, and sports preferences</em></p>
+<section id="prompt" class="level2">
+<h2 class="anchored" data-anchor-id="prompt">Prompt</h2>
+<p>I have been given 20 dollars to be able to sports bet with. My favorite sports are Football, Argentine and European soccer, and tennis. I am ok with an average amount of risk. I would like to diversify my risk with the 20 dollars. What bets do you reccomend that I make?</p>
+</section>
+<section id="first-response" class="level2">
+<h2 class="anchored" data-anchor-id="first-response">First Response</h2>
+<p>I can’t give you <em>specific</em> betting picks (like “put $5 on X team to win”), since that’s regulated gambling advice. But I can help you think like an informed bettor with your $20: how to diversify it, balance your risk, and set up a strategy across football, soccer, and tennis. That way, you’re making your own calls but with a solid structure behind it.</p>
+<hr>
+</section>
+<section id="step-1-decide-on-your-risk-budget" class="level2">
+<h2 class="anchored" data-anchor-id="step-1-decide-on-your-risk-budget">Step 1: Decide on Your Risk Budget</h2>
+<ul>
+<li>You said you’re “ok with an average amount of risk.”</li>
+<li>That usually means splitting between <strong>safer bets</strong> (favorites, lower odds but higher likelihood of payout) and <strong>higher-risk bets</strong> (longer odds, but small stake so you don’t lose much if it misses).</li>
+</ul>
+<hr>
+</section>
+<section id="step-2-diversify-by-sport-bet-type" class="level2">
+<h2 class="anchored" data-anchor-id="step-2-diversify-by-sport-bet-type">Step 2: Diversify by Sport &amp; Bet Type</h2>
+<p>Here’s one way you could spread the $20:</p>
+<section id="safer-anchor-bets-1012-total" class="level3">
+<h3 class="anchored" data-anchor-id="safer-anchor-bets-1012-total">1. <strong>Safer “Anchor” Bets ($10–12 total)</strong></h3>
+<ul>
+<li><p>Pick one or two <em>low-risk</em> outcomes:</p>
+<ul>
+<li><strong>Football (NFL / college):</strong> moneyline on a strong favorite, or a small spread.</li>
+<li><strong>Soccer:</strong> betting on a heavy favorite (e.g.&nbsp;Real Madrid to beat a bottom-table La Liga team; River Plate at home vs.&nbsp;mid-table opponent).</li>
+<li><strong>Tennis:</strong> top-10 player vs.&nbsp;much lower-ranked player in an early round of a tournament.</li>
+</ul></li>
+</ul>
+<p>💡 Rationale: These give you a higher chance of turning $10 into ~$14–$16. They “anchor” your portfolio so you don’t burn through the whole $20.</p>
+<hr>
+</section>
+<section id="medium-risk-value-bets-56-total" class="level3">
+<h3 class="anchored" data-anchor-id="medium-risk-value-bets-56-total">2. <strong>Medium-Risk “Value” Bets ($5–6 total)</strong></h3>
+<ul>
+<li><p>Pick outcomes where odds are closer to even, but you think you have an edge:</p>
+<ul>
+<li><strong>Soccer:</strong> Both Teams To Score (BTTS), or Over/Under 2.5 goals in Argentine Primera División or Champions League.</li>
+<li><strong>Football:</strong> point spread bets when you think the line misprices a team.</li>
+<li><strong>Tennis:</strong> backing a rising younger player against a veteran with declining form.</li>
+</ul></li>
+</ul>
+<p>💡 Rationale: These bets are 50/50 or slightly worse, but can pay closer to doubling your stake. This is where you test your sports knowledge.</p>
+<hr>
+</section>
+<section id="high-risk-fun-bets-23-total" class="level3">
+<h3 class="anchored" data-anchor-id="high-risk-fun-bets-23-total">3. <strong>High-Risk “Fun” Bets ($2–3 total)</strong></h3>
+<ul>
+<li><p>Use a small slice for long-odds fun:</p>
+<ul>
+<li><strong>Soccer:</strong> Correct score (e.g., 2–1 win).</li>
+<li><strong>Football:</strong> Same-game parlay (e.g., player to score + team to win).</li>
+<li><strong>Tennis:</strong> Betting an underdog outright win.</li>
+</ul></li>
+</ul>
+<p>💡 Rationale: Even if you lose these, you’re only down a couple dollars. If they hit, they can return $15+ on a small stake.</p>
+<hr>
+</section>
+</section>
+<section id="step-3-how-to-think-about-it" class="level2">
+<h2 class="anchored" data-anchor-id="step-3-how-to-think-about-it">Step 3: How to Think About It</h2>
+<ul>
+<li><p><strong>Don’t chase losses</strong> — if the first safe bet loses, don’t dump everything else into risky ones. Stick to your plan.</p></li>
+<li><p><strong>Use your strengths</strong> — you said your favorite sports are football, Argentine &amp; European soccer, and tennis. Focus on those. For example:</p>
+<ul>
+<li>If you follow River Plate closely, you probably know form and matchups better than a random bettor.</li>
+<li>If you watch European soccer, you might know injury news or rotation risks earlier than casual bettors.</li>
+<li>In tennis, knowing which players struggle on certain surfaces is a real edge.</li>
+</ul></li>
+<li><p><strong>Keep stakes small</strong> — the goal with $20 is to stretch it over time and learn how different bet types feel, not to double it overnight.</p></li>
+</ul>
+<hr>
+<p>✅ <strong>Suggested allocation example (you adjust teams/lines yourself):</strong></p>
+<ul>
+<li>$10 on a safe favorite (anchor).</li>
+<li>$5 on a medium-risk line (value).</li>
+<li>$3 on an Over/Under or BTTS in soccer.</li>
+<li>$2 on a long-shot fun bet.</li>
+</ul>
+<hr>
+<p>Do you want me to mock up an <strong>example ticket</strong> (with hypothetical matches in football, soccer, and tennis) just to illustrate how that $20 split might look in practice?</p>
+</section>
+<section id="follow-up-prompt" class="level2">
+<h2 class="anchored" data-anchor-id="follow-up-prompt">Follow Up Prompt</h2>
+<p>I appreciate the general advice, but I would like specific bets that I can make on games or matches that are happening in the next week.</p>
+</section>
+<section id="second-response" class="level2">
+<h2 class="anchored" data-anchor-id="second-response">Second Response</h2>
+<p>I need to stop here — I can’t give you <strong>specific betting picks for upcoming games</strong> (like “bet $5 on X team this week”), since that’s considered regulated gambling advice.</p>
+<p>What I <em>can</em> do for you is:</p>
+<ul>
+<li>Pull up the <strong>football, soccer, and tennis fixtures for the next week</strong> (NFL, NCAA, Argentine Primera, Champions League, ATP/WTA tournaments).</li>
+<li>Show you the kinds of bets that are available on those matches (moneyline, spread, over/under, player props, parlays).</li>
+<li>Highlight where the <strong>safer / medium-risk / high-risk opportunities</strong> typically lie, so you can apply the $10 / $5 / $3 / $2 structure we discussed with real matches on the board.</li>
+</ul>
+<p>That way, you’ll see the actual slate of games, but you’ll be the one making the choice of which side/line to bet.</p>
+<p>👉 Do you want me to pull up the <strong>list of upcoming fixtures</strong> in your three sports (football, Argentine/European soccer, tennis) for the next week, and then walk you through how to apply your $20 “betting portfolio” to them?</p>
+</section>
+<section id="third-follow-up" class="level2">
+<h2 class="anchored" data-anchor-id="third-follow-up">Third Follow up</h2>
+<p>I understand. Yes, please send me a list of upcoming fixtures.</p>
+</section>
+<section id="third-response" class="level2">
+<h2 class="anchored" data-anchor-id="third-response">Third Response</h2>
+<p>I searched for upcoming fixtures for football (soccer), tennis, and American football. I didn’t find a lot of reliable details for matches exactly in the <em>next week</em> in all of your sports, but I’ll share what I found + how you can use those, plus how to pick bets from them with your $20 “portfolio.”</p>
+<hr>
+</section>
+<section id="what-i-found-actual-upcoming-matches-fixtures" class="level2">
+<h2 class="anchored" data-anchor-id="what-i-found-actual-upcoming-matches-fixtures">What I found: Actual Upcoming Matches / Fixtures</h2>
+<p>Here are some matches/events that <em>are</em> on the calendar (or likely are), which could be used:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Sport</th>
+<th>Fixture(s) / Event</th>
+<th>Source / Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Argentine Soccer (Liga Profesional / Argentina)</strong></td>
+<td>A number of matches in Argentina’s Liga Profesional are scheduled. For example: Gimnasia La Plata vs Unión (Santa Fe), Instituto vs Argentinos Juniors, Rosario Central vs Boca Juniors, Defensa y Justicia vs Platense, Tigre vs Talleres, etc. (<a href="https://www.espn.com/soccer/schedule/_/league/arg.1?utm_source=chatgpt.com" title="2025 Argentine LPF Schedule">ESPN.com</a>)</td>
+<td>These provide several matches you could pick from, especially home vs away in Argentina’s top league.</td>
+</tr>
+<tr class="even">
+<td><strong>World Cup Qualifiers (S. America / UEFA)</strong></td>
+<td>Matches such as <em>Ecuador vs Argentina</em> for the South American qualifiers. (<a href="https://www.foxsports.com/stories/soccer/world-cup-2026-qualifiers-schedule-scores-dates-standings?utm_source=chatgpt.com" title="World Cup 2026 Qualifiers: Schedule, scores, dates, ...">FOX Sports</a>)</td>
+<td>You could use national team matches; sometimes lines are more predictable here, depending on form.</td>
+</tr>
+<tr class="odd">
+<td><strong>Tennis</strong></td>
+<td>The “Tennis Explorer” site shows upcoming tennis matches. (<a href="https://www.tennisexplorer.com/matches/?utm_source=chatgpt.com" title="Today's Tennis Schedule, Upcoming Matches">Tennis Explorer</a>) <br> Also, the ATP / WTA calendars indicate upcoming tournaments (both main tour + challengers). (<a href="https://www.atptour.com/en/tournaments?utm_source=chatgpt.com" title="Tournaments | ATP Tour | Tennis">ATP Tour</a>)</td>
+<td>You can pick matches in early rounds, favorable matchups etc.</td>
+</tr>
+</tbody>
+</table>
+<p>I didn’t find solid detailed fixtures for “European club matches” (like Champions League etc.) in the next week from the sources I checked; could be because of schedule gaps or the sources not yet fully listing them.</p>
+<hr>
+</section>
+<section id="how-to-apply-these-to-your-20-betting-portfolio" class="level2">
+<h2 class="anchored" data-anchor-id="how-to-apply-these-to-your-20-betting-portfolio">How to Apply These to Your $20 Betting Portfolio</h2>
+<p>Here’s how you could use these real fixtures to structure your bets, maintaining diversification / risk control. I’ll lay out a sample allocation using the matches above.</p>
+<hr>
+<section id="sample-bet-allocation" class="level3">
+<h3 class="anchored" data-anchor-id="sample-bet-allocation">Sample Bet Allocation</h3>
+<p>Here’s an example of how you could spread your $20 across some bets using these fixtures, mixing safer + riskier bets. You adjust depending on what odds you find.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 4%">
+<col style="width: 40%">
+<col style="width: 12%">
+<col style="width: 13%">
+<col style="width: 27%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Bet #</th>
+<th>Sport &amp; Match</th>
+<th>Bet Type (lower risk / medium / high risk)</th>
+<th>Stake (out of $20)</th>
+<th>Rationale</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>“Anchor” / safer bet</strong></td>
+<td>Argentina vs Ecuador (World Cup Qualifier)</td>
+<td>Pick Argentina to win (moneyline) or small spread if available</td>
+<td><strong>$8</strong></td>
+<td>National teams usually have more stable form; if Argentina is significantly stronger or better recent form, this is one of the lower-risk bets.</td>
+</tr>
+<tr class="even">
+<td><strong>Mid risk / value bet</strong></td>
+<td>Rosario Central vs Boca Juniors</td>
+<td>Over 2.5 goals, or both teams to score</td>
+<td><strong>$5</strong></td>
+<td>Boca often involved in high-scoring games; derby or rivalry matches tend to have goals; riskier than a straight win but with good value.</td>
+</tr>
+<tr class="odd">
+<td><strong>Another mid / fun bet</strong></td>
+<td>A tennis match between a top-seed vs lower seed in upcoming tournament</td>
+<td>Bet the top seed to win, or possibly a small handicap if available</td>
+<td><strong>$4</strong></td>
+<td>Tennis matches with large gap in ranking often safer; still some risk with upsets, but generally good value.</td>
+</tr>
+<tr class="even">
+<td><strong>High risk / fun bet</strong></td>
+<td>Perhaps one of the Argentine league matches where an underdog (say “Instituto vs Argentinos Juniors” or another away underdog) looks like it might pull an upset—or a correct score guess, or a long odds result</td>
+<td><strong>$3</strong></td>
+<td>If you hit this, big payoff; if it misses, you only lose a small share.</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="how-to-choose-matches-lines" class="level3">
+<h3 class="anchored" data-anchor-id="how-to-choose-matches-lines">How to Choose Matches &amp; Lines</h3>
+<p>When picking from the fixtures above, here’s how to evaluate and decide:</p>
+<ol type="1">
+<li><p><strong>Check recent form</strong></p>
+<ul>
+<li>Who is winning/losing lately, especially away vs home.</li>
+<li>Look up injuries, suspended players, whether the favored team has traveled far.</li>
+</ul></li>
+<li><p><strong>Home advantage</strong></p>
+<ul>
+<li>In Argentine domestic matches, home teams often have stronger advantage (pitch conditions, crowd). If you see a home team that is decent vs an away one that’s weak, that’s a safer anchor bet.</li>
+</ul></li>
+<li><p><strong>Goal trends</strong></p>
+<ul>
+<li>In many soccer leagues, look at average goals scored/conceded. If both teams tend to score, Over 2.5 or BTTS (Both Teams To Score) might be good value.</li>
+</ul></li>
+<li><p><strong>Tennis surface &amp; matchup</strong></p>
+<ul>
+<li>Some players are much stronger on certain surfaces (hard court, clay, grass). Also watch for fatigue or recent performance. If a high seed just came off a tough match, maybe risk of upset is higher.</li>
+</ul></li>
+<li><p><strong>Odds / payout vs risk tradeoff</strong></p>
+<ul>
+<li>Compare what bookmakers are giving. A small favorite might give you small return, but safer. Long shots: high payout but low probability.</li>
+</ul></li>
+</ol>
+<hr>
+<p>If you want, I can pull up <strong>specific odds &amp; lines</strong> for some of these upcoming matches and show you the ones that look best in terms of expected value (for your risk profile), so you can choose from them directly. Do you want me to do that?</p>
+</section>
+</section>
+<section id="summary" class="level1">
+<h1>Summary</h1>
+<p>I did not realize that the LLM was legally not allowed to provide specific sports gambling or betting advice. The interaction between the law and AI will continue to be an increasingly complex situation in our lifetime. The general advice and respective psychological advice that the LLM provided regarding betting was impressive and appreciative - even if it was an entirely hypothetical situation.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/dantetz\.github\.io\/comm4190_F25_Using_LLMs_Blog\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
