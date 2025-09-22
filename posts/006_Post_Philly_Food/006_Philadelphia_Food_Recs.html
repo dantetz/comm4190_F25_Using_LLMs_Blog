@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.24">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Dante">
+<meta name="dcterms.date" content="2025-09-19">
+<meta name="description" content="Asking Multiple LLM’s for Philadelphia Food Reccomendations Based on Varying Criteria">
+
+<title>Philadelphia Food Reccomendations – My Explorations with LLMs</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-1713c1db1ad41a796903378fc9ac7b2b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed fullcontent quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">My Explorations with LLMs</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com"> <i class="bi bi-twitter" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Philadelphia Food Reccomendations</h1>
+                  <div>
+        <div class="description">
+          Asking Multiple LLM’s for Philadelphia Food Reccomendations Based on Varying Criteria
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">LLMs</div>
+                <div class="quarto-category">Learning</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Dante </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">September 19, 2025</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+<section id="premise" class="level2">
+<h2 class="anchored" data-anchor-id="premise">Premise</h2>
+<p>I am interested in seeing what different LLM’s respond with when given the prompt below, as the general data informing this response is entirely public.</p>
+</section>
+<section id="prompt" class="level2">
+<h2 class="anchored" data-anchor-id="prompt">Prompt</h2>
+<p><span style="background-color: yellow ; padding: 5px;">Please provide me with restaurant options in Philadelphia that are either authentic foreign cuisine establishments or fine dining options that are worth the money. I know that whether or not they are worth the money is largely subjective, so please use your discretion and explain your reasoning. Including location, price, reviews, etc.</span></p>
+</section>
+<section id="gemini-response" class="level2">
+<h2 class="anchored" data-anchor-id="gemini-response">Gemini Response</h2>
+<p>Navigating Philadelphia’s dining scene can be an adventure, with a wide array of options ranging from celebrated fine dining to truly authentic, hole-in-the-wall foreign eateries. Here is a curated list of recommendations, divided into two categories, with an explanation of why each is considered “worth the money.”</p>
+<section id="fine-dining-worth-the-splurge" class="level3">
+<h3 class="anchored" data-anchor-id="fine-dining-worth-the-splurge">Fine Dining Worth the Splurge</h3>
+<p>These restaurants are not just about the food; they’re about the entire experience—the service, ambiance, and culinary artistry. While expensive, they are widely considered to deliver on their promise of an unforgettable meal.</p>
+<section id="vetri-cucina" class="level4">
+<h4 class="anchored" data-anchor-id="vetri-cucina">1. <strong>Vetri Cucina</strong></h4>
+<ul>
+<li><strong>Location:</strong> Washington Square West, Center City.</li>
+<li><strong>Price:</strong> A fixed-price tasting menu, which is the only option, is approximately $165 per person.</li>
+<li><strong>Why it’s Worth it:</strong> Vetri Cucina is a Philadelphia institution. The restaurant, run by James Beard Award-winning chef Marc Vetri, offers a highly intimate and personal dining experience in a small, elegant townhouse. The menu is a modern take on Italian cuisine, with an emphasis on handmade pasta and seasonal ingredients. Patrons consistently praise the “life-changing” pasta and top-tier service. The price is high, but for a truly special occasion or for a deep appreciation of culinary craftsmanship, it is considered a pinnacle of Philadelphia dining.</li>
+</ul>
+</section>
+<section id="zahav" class="level4">
+<h4 class="anchored" data-anchor-id="zahav">2. <strong>Zahav</strong></h4>
+<ul>
+<li><strong>Location:</strong> Old City.</li>
+<li><strong>Price:</strong> The signature “Tayim” (tasting) menu is typically around $75 per person. You can also order a la carte.</li>
+<li><strong>Why it’s Worth it:</strong> Zahav is a groundbreaking Israeli restaurant that has been instrumental in elevating Philadelphia’s food scene. Led by chef Michael Solomonov, it has won a James Beard Award for Outstanding Restaurant. The food is a modern take on Israeli cuisine, and the experience is a journey of flavors. The meal begins with a spread of salatim (small Israeli salads and dips) and fresh, warm laffa bread. The tasting menu, which is highly recommended, offers a comprehensive and deeply satisfying tour of the menu’s highlights, including the famous lamb shoulder. The value is exceptional for the quality and volume of food, and it’s a difficult but highly sought-after reservation.</li>
+</ul>
+</section>
+<section id="royal-sushi-izakaya" class="level4">
+<h4 class="anchored" data-anchor-id="royal-sushi-izakaya">3. <strong>Royal Sushi &amp; Izakaya</strong></h4>
+<ul>
+<li><strong>Location:</strong> Queen Village.</li>
+<li><strong>Price:</strong> Omakase is approximately $150 per person.</li>
+<li><strong>Why it’s Worth it:</strong> This establishment is a two-part experience. The Izakaya side offers Japanese small plates and drinks, but the true star is the intimate, eight-seat omakase counter. Chef Jesse Ito is celebrated for his masterful technique and the quality of his ingredients, with fish flown in from Japan multiple times a week. The omakase experience is not just a meal; it’s a performance and a conversation with the chef. The price is on par with high-end sushi omakase in other major cities, and it is widely considered one of the best sushi experiences on the East Coast.</li>
+</ul>
+</section>
+<section id="kalaya" class="level4">
+<h4 class="anchored" data-anchor-id="kalaya">4. <strong>Kalaya</strong></h4>
+<ul>
+<li><strong>Location:</strong> Fishtown (original location was in the Italian Market).</li>
+<li><strong>Price:</strong> $$$ (Moderate to Expensive).</li>
+<li><strong>Why it’s Worth it:</strong> Kalaya is a Thai restaurant that has garnered national and international acclaim. Chef Nok Suntaranon’s vision is a deeply personal and bold take on southern Thai flavors. The restaurant’s new, larger location and liquor license have only enhanced the experience. Reviewers describe the food as “genius” and “unapologetically personal.” It has been listed among the best restaurants in the city and is a must-visit for anyone seeking a true and unforgettable taste of Thai cuisine.</li>
+</ul>
+</section>
+</section>
+<section id="authentic-foreign-cuisine-establishments" class="level3">
+<h3 class="anchored" data-anchor-id="authentic-foreign-cuisine-establishments">Authentic Foreign Cuisine Establishments</h3>
+<p>These restaurants are beloved by locals for their authentic flavors and cultural immersion. They may not be “fine dining” in the traditional sense, but they are highly regarded for their quality and genuine cuisine.</p>
+<section id="rangoon-burmese" class="level4">
+<h4 class="anchored" data-anchor-id="rangoon-burmese">1. <strong>Rangoon</strong> (Burmese)</h4>
+<ul>
+<li><strong>Location:</strong> Chinatown.</li>
+<li><strong>Why it’s Worth it:</strong> Rangoon is a long-standing gem in Philadelphia’s Chinatown, offering a rare taste of Burmese cuisine. The dishes are a unique blend of flavors from neighboring countries like India, China, and Thailand. Reviewers often highlight the “Thousand Layer Bread” appetizer as a must-try. This is an excellent choice for a unique and memorable meal that goes beyond the usual Asian-fusion options.</li>
+</ul>
+</section>
+<section id="hardena-indonesian" class="level4">
+<h4 class="anchored" data-anchor-id="hardena-indonesian">2. <strong>Hardena</strong> (Indonesian)</h4>
+<ul>
+<li><strong>Location:</strong> Point Breeze/South Philly.</li>
+<li><strong>Why it’s Worth it:</strong> Hardena is a true family-run restaurant that serves some of the most authentic Indonesian food in the city. The atmosphere is casual and the food is served in a cafeteria-style format, which adds to its charm and authenticity. It’s known for its incredibly flavorful curries, rendang (braised beef), and various sambal. It’s an excellent value and a beloved local spot for a taste of home-cooked Indonesian food.</li>
+</ul>
+</section>
+<section id="abyssinia-ethiopian" class="level4">
+<h4 class="anchored" data-anchor-id="abyssinia-ethiopian">3. <strong>Abyssinia</strong> (Ethiopian)</h4>
+<ul>
+<li><strong>Location:</strong> West Philadelphia.</li>
+<li><strong>Why it’s Worth it:</strong> West Philly is home to a number of excellent Ethiopian restaurants, and Abyssinia is consistently recommended. Ethiopian food is traditionally eaten with your hands, using injera (a spongy, sourdough flatbread) to scoop up various stews and vegetable dishes. Abyssinia offers a communal and flavorful dining experience, with a wide variety of both meat and vegetarian options. It’s a great place to go with a group and share a platter.</li>
+</ul>
+</section>
+<section id="marrakesh-moroccan" class="level4">
+<h4 class="anchored" data-anchor-id="marrakesh-moroccan">4. <strong>Marrakesh</strong> (Moroccan)</h4>
+<ul>
+<li><strong>Location:</strong> Society Hill.</li>
+<li><strong>Why it’s Worth it:</strong> Marrakesh offers more than just a meal; it’s a full cultural experience. The restaurant is known for its intimate, tapestry-lined setting with low tables and floor pillows. The dining experience is a prix-fixe, seven-course feast that includes everything from soup and salads to classic tagines and pastries. Rosewater is brought to the table for hand-washing, and the overall atmosphere is designed to transport you to Morocco. It’s a fun and unique option for a celebratory or date night dinner.</li>
+</ul>
+</section>
+<section id="pho-house-thang-long-vietnamese" class="level4">
+<h4 class="anchored" data-anchor-id="pho-house-thang-long-vietnamese">5. <strong>Pho House Thang Long</strong> (Vietnamese)</h4>
+<ul>
+<li><strong>Location:</strong> Northern Liberties.</li>
+<li><strong>Why it’s Worth it:</strong> A go-to for many locals, Pho House is praised for its family recipes and traditional Vietnamese dishes. While their pho is a standout, they also offer a variety of other items like vermicelli bowls, spring rolls, and banh mi. The quality and authenticity are consistently praised, and it’s a fantastic spot for a delicious and satisfying meal at a very reasonable price.</li>
+</ul>
+</section>
+</section>
+</section>
+<section id="chat-gpt-5-response" class="level2">
+<h2 class="anchored" data-anchor-id="chat-gpt-5-response">Chat GPT-5 Response</h2>
+<p>awesome brief! here’s a tight, high-signal short-list for Philly—split into (A) authentic foreign cuisines and (B) splurge-worthy fine dining. I’ve included neighborhood, typical spend, and <em>why it’s worth it</em>, with sources.</p>
+<hr>
+</section>
+<section id="a-authentic-foreign-cuisine-great-value-real-deal-flavors" class="level1">
+<h1>A) Authentic foreign cuisine (great value, real-deal flavors)</h1>
+<p><strong>Kalaya (Southern Thai) — Fishtown</strong> <em>Typical spend:</em> ~$25–$40 pp à la carte; groups’ tasting menus from ~$75. <em>Why it’s worth it:</em> blisteringly aromatic southern Thai from chef Chutatip “Nok” Suntaranon, who won <strong>James Beard Best Chef: Mid-Atlantic (2023)</strong>—bold heat, vivid curries, and shareable salads. (<a href="https://kalayaphilly.com/menu?utm_source=chatgpt.com" title="Menu">Kalaya</a>) <em>Where:</em> 4 W Palmer St.&nbsp;(<a href="https://kalayaphilly.com/?utm_source=chatgpt.com" title="Kalaya">Kalaya</a>)</p>
+<p><strong>Suraya (Lebanese) — Fishtown</strong> <em>Typical spend:</em> $31–$50 pp à la carte; brunch tasting <strong>$42</strong>. <em>Why it’s worth it:</em> expansive Levantine menu (labneh, muhammara, kebabs) in a gorgeous garden setting; consistent crowd-pleaser with fair pricing. (<a href="https://www.opentable.com/r/suraya-philadelphia?utm_source=chatgpt.com" title="Suraya - Philadelphia, PA on OpenTable">OpenTable</a>) <em>Where:</em> 1528 Frankford Ave. (<a href="https://www.surayaphilly.com/?utm_source=chatgpt.com" title="Yalla! Welcome To Suraya | Market, Restaurant &amp; Garden ...">Suraya</a>)</p>
+<p><strong>Hardena / Waroeng Surabaya (Indonesian) — South Philly</strong> <em>Typical spend:</em> $12–$20 pp (combo plates, rendang, curries). <em>Why it’s worth it:</em> homey, family-run Indonesian spot; one of the city’s most soulful, authentic kitchens—and a bargain. (<a href="https://hardenapa.com/?utm_source=chatgpt.com" title="Hardena">hardenapa.com</a>) <em>Where:</em> 1754 S Hicks St.&nbsp;(<a href="https://hardenapa.com/?utm_source=chatgpt.com" title="Hardena">hardenapa.com</a>)</p>
+<p><strong>South Philly Barbacoa (Mexican) — Italian Market</strong> <em>Typical spend:</em> ~$6 tacos; go early (they sell out). <em>Why it’s worth it:</em> legendary lamb barbacoa from <strong>James Beard Best Chef winner Cristina Martínez (2022)</strong>—a pilgrimage for taco lovers. (<a href="https://www.timeout.com/philadelphia/restaurants/barbacoa-south-philly?utm_source=chatgpt.com" title="South Philly Barbacoa is Well Worth Planning Ahead For">Time Out Worldwide</a>) <em>Where:</em> 1134 S 9th St.&nbsp;(<a href="https://www.yelp.com/biz/south-philly-barbacoa-philadelphia?start=140&amp;utm_source=chatgpt.com" title="SOUTH PHILLY BARBACOA - Updated September 2025">Yelp</a>)</p>
+<p><strong>Gabriella’s Vietnam (Vietnamese) — East Passyunk</strong> <em>Typical spend:</em> many plates $14–$30; easy to share. <em>Why it’s worth it:</em> modern Vietnamese (bánh xèo, bánh bèo, whole fish) with technique and polish; great for groups. (<a href="https://gabriellasvietnam.com/food-menu?utm_source=chatgpt.com" title="Food Menu">Gabriella’s Vietnam</a>) <em>Where:</em> 1837 E Passyunk Ave. (<a href="https://www.opentable.com/r/gabriellas-vietnam-philadelphia?utm_source=chatgpt.com" title="Gabriella's Vietnam Restaurant - Philadelphia, PA">OpenTable</a>)</p>
+<hr>
+</section>
+<section id="b-fine-dining-splurge-worthy" class="level1">
+<h1>B) Fine dining (splurge-worthy)</h1>
+<p><strong>Friday Saturday Sunday (New American tasting) — Rittenhouse</strong> <em>Typical spend:</em> tasting menu <strong>$185 pp</strong> (prepaid). <em>Why it’s worth it:</em> Philly’s national standard-bearer—<strong>James Beard Outstanding Restaurant (2023)</strong>—precise cooking, warm service, intimate room. (<a href="https://www.opentable.com/r/friday-saturday-sunday-philadelphia?utm_source=chatgpt.com" title="Friday Saturday Sunday Restaurant - Philadelphia, PA">OpenTable</a>) <em>Where:</em> 261 S 21st St.&nbsp;(<a href="https://www.fridaysaturdaysunday.com/?utm_source=chatgpt.com" title="Friday Saturday Sunday">Friday Saturday Sunday</a>)</p>
+<p><strong>Vetri Cucina (Italian tasting) — Washington Sq. West</strong> <em>Typical spend:</em> classic tasting <strong>$165</strong>, “Forchetta” seasonal tasting <strong>$215</strong>; pairings available. <em>Why it’s worth it:</em> old-school craftsmanship (handmade pastas, white-glove service) in a 32-seat townhouse—Philly fine dining at its most timeless. (<a href="https://vetricucina.com/menu/?utm_source=chatgpt.com" title="Menu">vetricucina.com</a>) <em>Where:</em> 1312 Spruce St.&nbsp;(<a href="https://www.phillymag.com/foobooz/best-tasting-menus/?utm_source=chatgpt.com" title="Philly's Finest: A Guide to the City's Best Tasting Menus">Philadelphia Magazine</a>)</p>
+<p><strong>Zahav (Israeli) — Society Hill</strong> <em>Typical spend:</em> typically ~$90–$120 pp depending on set-menus; Mesibah lamb shoulder feast is the move. <em>Why it’s worth it:</em> benchmark modern Israeli from Michael Solomonov; salatim, laffa and hummus set the tone—signature lamb shoulder seals it. (<a href="https://www.theworlds50best.com/discovery/Establishments/US/Philadelphia/Zahav.html?utm_source=chatgpt.com" title="Zahav-Philadelphia-Restaurant-50Best Discovery">50B - Restaurants - GLOBAL</a>) <em>Where:</em> 237 St James Pl. (<a href="https://www.theworlds50best.com/discovery/Establishments/US/Philadelphia/Zahav.html?utm_source=chatgpt.com" title="Zahav-Philadelphia-Restaurant-50Best Discovery">50B - Restaurants - GLOBAL</a>)</p>
+<p><strong>River Twice (Modern Mid-Atlantic tasting) — East Passyunk</strong> <em>Typical spend:</em> tasting <strong>~$150 pp</strong>; add-ons optional. <em>Why it’s worth it:</em> hyper-seasonal seafood/produce, fermentation pantry, and a calm dining room—thoughtful without feeling stiff. (<a href="https://order.toasttab.com/online/river-twice/item-dining-room-tasting-menu_8661c65c-7e5e-4b26-ac4f-233accb4101c?utm_source=chatgpt.com" title="River Twice - Dining Room Tasting Menu">Toast</a>) <em>Where:</em> 1601 E Passyunk Ave. (<a href="https://order.toasttab.com/online/river-twice/item-dining-room-tasting-menu_8661c65c-7e5e-4b26-ac4f-233accb4101c?utm_source=chatgpt.com" title="River Twice - Dining Room Tasting Menu">Toast</a>)</p>
+<p><strong>Hiroki (Omakase) — Fishtown</strong> <em>Typical spend:</em> omakase <strong>$185</strong> (also a lighter <strong>$115</strong> option certain nights). <em>Why it’s worth it:</em> elegant, temple-quiet room and refined Kyoto-leaning progression; pricey, but polished. (Royal Sushi’s 16-course <strong>$300</strong> omakase is the harder-to-book, higher-spend alternative.) (<a href="https://philly.eater.com/2024/10/2/24259728/hiroki-a-la-carte-menu-sushi-omakase-fishtown-philly?utm_source=chatgpt.com" title="For the First Time Ever, HIROKI Is Now Serving an A La ...">Eater Philly</a>) <em>Where:</em> 1355 N Front St.&nbsp;(Hiroki) / 780-782 S 2nd St.&nbsp;(Royal). (<a href="https://resy.com/cities/philadelphia-pa/venues/hiroki?utm_source=chatgpt.com" title="Book Your HIROKI Philadelphia Reservation Now on Resy">Resy</a>)</p>
+<p><strong>Vernick Food &amp; Drink (New American) — Rittenhouse</strong> <em>Typical spend:</em> ~$60–$100 pp à la carte (e.g., roast chicken $34 half / $58 whole; lamb chops $49). <em>Why it’s worth it:</em> dialed-in neighborhood fine dining with serious technique and a strong wine program—classy without being fussy. (<a href="https://www.vernickphilly.com/vernick-food-and-drink-dinner-menu?utm_source=chatgpt.com" title="Vernick Food &amp; Drink">Vernick Philadelphia</a>) <em>Where:</em> 2031 Walnut St.&nbsp;(<a href="https://www.vernickphilly.com/vernick-food-and-drink-dinner-menu?utm_source=chatgpt.com" title="Vernick Food &amp; Drink">Vernick Philadelphia</a>)</p>
+<hr>
+<section id="quick-notes-on-worth-it" class="level2">
+<h2 class="anchored" data-anchor-id="quick-notes-on-worth-it">Quick notes on “worth it”</h2>
+<ul>
+<li><strong>Awards &amp; lists</strong>: Philly’s current consensus darlings include Friday Saturday Sunday (Beard winner) and Kalaya (Beard Best Chef), with many of the above on Philly Mag’s <em>50 Best</em> list. These signals help justify the spend. (<a href="https://www.jamesbeard.org/stories/the-2023-james-beard-award-winners?utm_source=chatgpt.com" title="The 2023 James Beard Award Winners">jamesbeard.org</a>)</li>
+<li><strong>Pricing volatility</strong>: tasting menu prices shift; always peek at menus/Resy/OpenTable before booking (I used current listings above). (<a href="https://www.opentable.com/r/friday-saturday-sunday-philadelphia?utm_source=chatgpt.com" title="Friday Saturday Sunday Restaurant - Philadelphia, PA">OpenTable</a>)</li>
+</ul>
+<p>If you tell me your top cuisines (e.g., Thai, Lebanese, modern Israeli, sushi) and budget per head, I’ll route you to 3–4 <em>best-fit</em> picks and suggest what to order at each.</p>
+</section>
+<section id="reflection" class="level2">
+<h2 class="anchored" data-anchor-id="reflection">Reflection</h2>
+<p>The most interesting thing I noted was that Gemini and GPT both included Kalaya on the list, but Gemini included it on the fine dining list while GPT included it on the authentic cuisine list. GPT’s last 3 options on the authenitc list were ones I would also include, but the first few seemed more like fine dining options to me. It is interesting that the LLM’s seemed to have a different criteria for what classified as fine dining (in terms of price) or not.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/dantetz\.github\.io\/comm4190_F25_Using_LLMs_Blog\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
