@@ -1,39 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://dantetz.github.io/comm4190_F25_Using_LLMs_Blog/index.html</loc>
-    <lastmod>2025-09-22T17:47:41.175Z</lastmod>
+    <loc>https://dantetz.github.io/comm4190_F25_Using_LLMs_Blog/about.html</loc>
+    <lastmod>2025-09-29T16:03:55.695Z</lastmod>
   </url>
   <url>
-    <loc>https://dantetz.github.io/comm4190_F25_Using_LLMs_Blog/posts/002_Post_Flight_Options/002_Flight_Options.html</loc>
-    <lastmod>2025-09-22T17:47:41.177Z</lastmod>
-  </url>
-  <url>
-    <loc>https://dantetz.github.io/comm4190_F25_Using_LLMs_Blog/posts/005_Image_Creation_Post/005_Image_Creation_Post.html</loc>
-    <lastmod>2025-09-22T17:47:41.242Z</lastmod>
-  </url>
-  <url>
-    <loc>https://dantetz.github.io/comm4190_F25_Using_LLMs_Blog/posts/000_test_post/index.html</loc>
-    <lastmod>2025-09-22T17:47:41.176Z</lastmod>
-  </url>
-  <url>
-    <loc>https://dantetz.github.io/comm4190_F25_Using_LLMs_Blog/posts/001_Post_Book_Rec/Book_Rec.html</loc>
-    <lastmod>2025-09-22T17:47:41.177Z</lastmod>
+    <loc>https://dantetz.github.io/comm4190_F25_Using_LLMs_Blog/posts/009_Post_Classes/009_Classes.html</loc>
+    <lastmod>2025-09-29T16:03:55.763Z</lastmod>
   </url>
   <url>
     <loc>https://dantetz.github.io/comm4190_F25_Using_LLMs_Blog/posts/004_Post_Grant_Options/004_Grant_Options.html</loc>
-    <lastmod>2025-09-22T17:47:41.177Z</lastmod>
+    <lastmod>2025-09-29T16:03:55.697Z</lastmod>
   </url>
   <url>
-    <loc>https://dantetz.github.io/comm4190_F25_Using_LLMs_Blog/posts/006_Post_Philly_Food/006_Philadelphia_Food_Recs.html</loc>
-    <lastmod>2025-09-22T17:47:41.242Z</lastmod>
+    <loc>https://dantetz.github.io/comm4190_F25_Using_LLMs_Blog/posts/002_Post_Flight_Options/002_Flight_Options.html</loc>
+    <lastmod>2025-09-29T16:03:55.697Z</lastmod>
+  </url>
+  <url>
+    <loc>https://dantetz.github.io/comm4190_F25_Using_LLMs_Blog/posts/005_Image_Creation_Post/005_Image_Creation_Post.html</loc>
+    <lastmod>2025-09-29T16:03:55.762Z</lastmod>
+  </url>
+  <url>
+    <loc>https://dantetz.github.io/comm4190_F25_Using_LLMs_Blog/posts/007_Post_Philly_Fitness/007_Philly_Fitness.html</loc>
+    <lastmod>2025-09-29T16:03:55.763Z</lastmod>
+  </url>
+  <url>
+    <loc>https://dantetz.github.io/comm4190_F25_Using_LLMs_Blog/index.html</loc>
+    <lastmod>2025-09-29T16:03:55.695Z</lastmod>
+  </url>
+  <url>
+    <loc>https://dantetz.github.io/comm4190_F25_Using_LLMs_Blog/posts/000_test_post/index.html</loc>
+    <lastmod>2025-09-29T16:03:55.696Z</lastmod>
   </url>
   <url>
     <loc>https://dantetz.github.io/comm4190_F25_Using_LLMs_Blog/posts/003_Post_Sports_Bets/003_Post_Sports_Bets.html</loc>
-    <lastmod>2025-09-22T17:47:41.177Z</lastmod>
+    <lastmod>2025-09-29T16:03:55.697Z</lastmod>
   </url>
   <url>
-    <loc>https://dantetz.github.io/comm4190_F25_Using_LLMs_Blog/about.html</loc>
-    <lastmod>2025-09-22T17:47:41.175Z</lastmod>
+    <loc>https://dantetz.github.io/comm4190_F25_Using_LLMs_Blog/posts/001_Post_Book_Rec/Book_Rec.html</loc>
+    <lastmod>2025-09-29T16:03:55.697Z</lastmod>
+  </url>
+  <url>
+    <loc>https://dantetz.github.io/comm4190_F25_Using_LLMs_Blog/posts/006_Post_Philly_Food/006_Philadelphia_Food_Recs.html</loc>
+    <lastmod>2025-09-29T16:03:55.762Z</lastmod>
+  </url>
+  <url>
+    <loc>https://dantetz.github.io/comm4190_F25_Using_LLMs_Blog/posts/008_Post_First_Car/008_First_Car.html</loc>
+    <lastmod>2025-09-29T16:03:55.763Z</lastmod>
   </url>
 </urlset>
