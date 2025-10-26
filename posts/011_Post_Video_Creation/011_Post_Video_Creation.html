@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Dante">
+<meta name="dcterms.date" content="2025-10-19">
+<meta name="description" content="Asking Different LLM’s to Evaluate AI’s Video Creation Abilities">
+
+<title>Video Creation Analysis – My Explorations with LLMs</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-0b37c64f34216b628666a8dac638b53b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed fullcontent quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">My Explorations with LLMs</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com"> <i class="bi bi-twitter" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Video Creation Analysis</h1>
+                  <div>
+        <div class="description">
+          Asking Different LLM’s to Evaluate AI’s Video Creation Abilities
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">LLMs</div>
+                <div class="quarto-category">Learning</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Dante </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">October 19, 2025</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+<section id="initial-premise" class="level1">
+<h1>Initial Premise</h1>
+<p><em>Over the last few months, there have been enourmous improvments in AI’s ability to create picture or video creations. I am curious to see if different LLM’s evaluate different video creation capabilities differently. To provide a fair analysis, I will be asking the different LLM’s, Chat-GPT, Perplexity, and Google Gemini, the same questions, worded the same!</em></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="011_Post_Video_Creation_files/figure-html/f8b4df59-0af3-401b-8166-c1c8cc2b0e1c-1-9d7061e2-d812-4c37-bcbe-236e65844261.jpg" class="img-fluid figure-img"></p>
+<figcaption>download.jpg</figcaption>
+</figure>
+</div>
+</section>
+<section id="first-question" class="level1">
+<h1>First Question</h1>
+<p><em>How would you evaluate the progression of AI’s ability to create picture and video content. Which program or system has the most complete picture and video production capabilities?</em></p>
+<section id="chat-gpt-5-response" class="level2">
+<h2 class="anchored" data-anchor-id="chat-gpt-5-response">Chat-GPT 5 Response</h2>
+<p>Here’s the quick state-of-play as of <strong>October 2025</strong>:</p>
+</section>
+</section>
+<section id="how-far-has-ai-come-for-pictures-video" class="level1">
+<h1>How far has AI come for pictures &amp; video?</h1>
+<ul>
+<li><strong>Images:</strong> Diffusion models (Midjourney, Firefly, SDXL/Flux, etc.) now deliver near-photorealism, strong prompt adherence, and reliable in/out-painting. Midjourney’s v6→v6.1 jump tightened coherence and speed, and v7 added more consistency and some video-adjacent tools. (<a href="https://docs.midjourney.com/hc/en-us/articles/32199405667853-Version?utm_source=chatgpt.com" title="Version">Midjourney</a>)</li>
+<li><strong>Video:</strong> 2025’s leap was adding <strong>native audio</strong>, better <strong>physics/world modeling</strong>, and <strong>shot-level control</strong> (keyframes, camera paths, masks). Google’s <strong>Veo 3.1</strong> ships inside <strong>Flow</strong> with editing, object removal, and “extend a scene up to ~1 minute”; OpenAI’s <strong>Sora 2</strong> upped realism/physics and added synchronized dialogue &amp; SFX; Runway Gen-3 emphasizes creative controls and production workflow; Luma and Pika remain fast, creative options. (<a href="https://www.theverge.com/news/800371/google-veo-3-1-flow-audio?utm_source=chatgpt.com" title="Google's AI video generator is getting better editing and more audio">The Verge</a>)</li>
+</ul>
+</section>
+<section id="whos-most-complete-right-now" class="level1">
+<h1>Who’s “most complete” right now?</h1>
+<p>It depends on what “complete” means. Here’s the practical read:</p>
+<p><strong>Best all-in-one video <em>creation + editing + audio</em> pipeline: <em>Google Veo 3.1 inside Flow</em>.</strong> You get text/image-to-video <strong>with sound</strong>, <strong>lighting/shadow edits</strong>, <strong>Frames-to-Video</strong> transitions, <strong>Scene Extension</strong> (~up to a minute), and incoming <strong>object removal</strong>—all in one place, plus Gemini/Vertex APIs for devs. That’s the broadest end-to-end toolset available to the public today. (<a href="https://www.theverge.com/news/800371/google-veo-3-1-flow-audio?utm_source=chatgpt.com" title="Google's AI video generator is getting better editing and more audio">The Verge</a>)</p>
+<p><strong>Most realistic &amp; physically consistent shots: <em>OpenAI Sora 2</em>.</strong> Sora 2 improves physics and world modeling and adds <strong>synchronized dialogue/SFX</strong>. Current public limits keep clips relatively short (e.g., ~<strong>15s</strong> free / <strong>25s</strong> Pro per TechRadar), and roll-out is region-gated, but raw shot quality is state-of-the-art. (<a href="https://openai.com/index/sora-2/?utm_source=chatgpt.com" title="Sora 2 is here">OpenAI</a>)</p>
+<p><strong>Strongest production workflow &amp; granular controls today: <em>Runway Gen-3</em>.</strong> You get camera paths, motion brushes, director mode, and solid guardrails/C2PA—great for creators who need fine control and editing inside a familiar NLE-like environment. (<a href="https://runwayml.com/research/introducing-gen-3-alpha?utm_source=chatgpt.com" title="Runway Research | Introducing Gen-3 Alpha: A New ...">Runway</a>)</p>
+<p><strong>Fast, accessible alternatives:</strong></p>
+<ul>
+<li><strong>Luma Dream Machine</strong> (widely available, creative, easy to use). (<a href="https://lumalabs.ai/dream-machine?utm_source=chatgpt.com" title="Luma Dream Machine: New Freedoms of Imagination">Luma AI</a>)</li>
+<li><strong>Pika</strong> (consumer-friendly, rapid iteration). (General market positioning; see comparison roundups.) (<a href="https://skywork.ai/blog/veo-3-1-vs-runway-vs-pika-vs-luma-2025-comparison/?utm_source=chatgpt.com" title="Veo 3.1 vs Runway vs Pika vs Luma: 2025 Quality &amp; Speed ...">Skywork</a>)</li>
+</ul>
+<p><strong>Still images (illustration/branding): <em>Midjourney</em> is still king.</strong> It remains the go-to for art direction and stylistic range, with v6.1 as a solid base and v7 expanding fidelity; Adobe <strong>Firefly</strong> is best if you need enterprise-grade licensing and Adobe app integration. (<a href="https://docs.midjourney.com/hc/en-us/articles/32199405667853-Version?utm_source=chatgpt.com" title="Version">Midjourney</a>)</p>
+<hr>
+<section id="tldr-recommendations" class="level2">
+<h2 class="anchored" data-anchor-id="tldr-recommendations">TL;DR recommendations</h2>
+<ul>
+<li><strong>You want an end-to-end AI video studio (generate + edit + audio) today:</strong> pick <strong>Google Veo 3.1 in Flow</strong>. (<a href="https://www.theverge.com/news/800371/google-veo-3-1-flow-audio?utm_source=chatgpt.com" title="Google's AI video generator is getting better editing and more audio">The Verge</a>)</li>
+<li><strong>You want the most realistic single shots and can live with shorter clips/limited availability:</strong> <strong>Sora 2</strong>. (<a href="https://openai.com/index/sora-2/?utm_source=chatgpt.com" title="Sora 2 is here">OpenAI</a>)</li>
+<li><strong>You’re a creator who needs hands-on control and a production workflow:</strong> <strong>Runway Gen-3</strong>. (<a href="https://runwayml.com/research/introducing-gen-3-alpha?utm_source=chatgpt.com" title="Runway Research | Introducing Gen-3 Alpha: A New ...">Runway</a>)</li>
+<li><strong>You need top-tier still images for design/branding:</strong> <strong>Midjourney</strong>; if licensing/integration matter, <strong>Adobe Firefly</strong>. (<a href="https://docs.midjourney.com/hc/en-us/articles/32199405667853-Version?utm_source=chatgpt.com" title="Version">Midjourney</a>)</li>
+</ul>
+<p>If you tell me your exact use case (ads, short films, Instagram, product shots, etc.), I’ll map the best setup (model + settings + workflow) for you.</p>
+</section>
+<section id="perplexity-response" class="level2">
+<h2 class="anchored" data-anchor-id="perplexity-response">Perplexity Response</h2>
+<p>AI’s ability to generate pictures and video content has progressed dramatically by late 2025, becoming one of the most dynamic areas in artificial intelligence and media technology. The field now integrates multimodal capabilities—combining text, audio, and image inputs—to produce near-professional visual media.</p>
+<section id="ai-image-generation-progress" class="level3">
+<h3 class="anchored" data-anchor-id="ai-image-generation-progress">AI Image Generation Progress</h3>
+<p>Image generation has matured to near-photorealistic quality. 2025 systems like <strong>DALL‑E 3</strong>, <strong>Midjourney v6</strong>, and <strong>Stable Diffusion XL</strong> produce 4K-resolution images with sharp details, accurate anatomy, and realistic lighting that rival human photography. Adobe’s <strong>Firefly</strong> integrates directly with Photoshop and Illustrator, letting professionals edit and generate visuals seamlessly. Specialized applications like <strong>PhotoGPT</strong> now create fully personalized portraits and product visuals, and can even operate offline through local AI models on modern devices for greater privacy.<a href="https://www.theverge.com/news/800371/google-veo-3-1-flow-audio?utm_source=chatgpt.com" title="Google's AI video generator is getting better editing and more audio">1</a><a href="https://runwayml.com/research/introducing-gen-3-alpha?utm_source=chatgpt.com" title="Runway Research | Introducing Gen-3 Alpha: A New ...">3</a></p>
+</section>
+<section id="ai-video-generation-progress" class="level3">
+<h3 class="anchored" data-anchor-id="ai-video-generation-progress">AI Video Generation Progress</h3>
+<p>Video AI has advanced rapidly but remains more complex than image generation. The leading systems—<strong>Runway Gen‑4</strong>, <strong>OpenAI’s Sora</strong>, <strong>Google’s Veo 3</strong>, and <strong>Kling AI</strong>—can now produce minute‑long, coherent video clips from simple text descriptions. These tools integrate natural motion, camera angles, and realistic lighting effects that previously required professional crews. Runway, for instance, supports text‑to‑video and image‑to‑video editing directly in the browser, while Kling AI achieves extremely realistic lip‑sync performance though at slower speeds. Google’s Veo has begun developing native audio-generated dialogue and sound design capabilities.<a href="https://skywork.ai/blog/veo-3-1-vs-runway-vs-pika-vs-luma-2025-comparison/?utm_source=chatgpt.com" title="Veo 3.1 vs Runway vs Pika vs Luma: 2025 Quality &amp; Speed ...">5</a>[7][8]</p>
+</section>
+<section id="most-complete-visual-ai-systems-in-2025" class="level3">
+<h3 class="anchored" data-anchor-id="most-complete-visual-ai-systems-in-2025">Most Complete Visual AI Systems in 2025</h3>
+<p>For overall completeness—meaning the broadest feature set, realism, and accessibility—the top contenders are:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Category</th>
+<th>Leading System (2025)</th>
+<th>Key Strengths</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>General image generation</td>
+<td>DALL‑E 3 by OpenAI</td>
+<td>Highly creative, detailed, great text-to-image coherence [9]</td>
+</tr>
+<tr class="even">
+<td>Professional image editing</td>
+<td>Adobe Firefly</td>
+<td>Deep integration with Adobe tools, strong controllability <a href="https://runwayml.com/research/introducing-gen-3-alpha?utm_source=chatgpt.com" title="Runway Research | Introducing Gen-3 Alpha: A New ...">4</a></td>
+</tr>
+<tr class="odd">
+<td>Creative photography</td>
+<td>PhotoGPT</td>
+<td>Personalized, realistic photo creation <a href="https://openai.com/index/sora-2/?utm_source=chatgpt.com" title="Sora 2 is here">3</a></td>
+</tr>
+<tr class="even">
+<td>Text-to-video storytelling</td>
+<td>Runway Gen‑4</td>
+<td>Robust video editing + generation flexibility <a href="https://lumalabs.ai/dream-machine?utm_source=chatgpt.com" title="Luma Dream Machine: New Freedoms of Imagination">7</a></td>
+</tr>
+<tr class="odd">
+<td>High‑realism video clips</td>
+<td>Kling AI</td>
+<td>Realistic motion, top-tier lip-sync <a href="https://skywork.ai/blog/veo-3-1-vs-runway-vs-pika-vs-luma-2025-comparison/?utm_source=chatgpt.com" title="Veo 3.1 vs Runway vs Pika vs Luma: 2025 Quality &amp; Speed ...">6</a></td>
+</tr>
+<tr class="even">
+<td>Cinematic visual realism &amp; sound</td>
+<td>Google Veo 3</td>
+<td>Advanced long-sequence coherence, emerging audio generation [8]</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="overall-evaluation" class="level3">
+<h3 class="anchored" data-anchor-id="overall-evaluation">Overall Evaluation</h3>
+<p>As of late 2025, <strong>Runway Gen‑4</strong> and <strong>DALL‑E 3</strong> stand out as the most comprehensive for video and image generation respectively. DALL‑E 3 is unmatched in prompt accuracy and integration into everyday creative tools, while Runway Gen‑4 leads in flexible, cinematic-quality text‑to‑video production. The convergence of these capabilities—especially through multimodal AI—suggests that by 2026, users may create full narrative films with automatically synchronized visuals, dialogue, and soundtracks—all generated by AI.</p>
+<p><a href="https://www.missioncloud.com/blog/how-ai-image-generation-has-improved-in-1-year">1</a> <a href="https://tripleareview.com/ai-image-generation-trends/">2</a> <a href="https://blog.photogptai.com/posts/34-million-ai-images-a-day-inside-the-visual-revolution-of-2025/">3</a> <a href="https://www.pcmag.com/picks/the-best-ai-image-generators">4</a> <a href="https://www.synthesia.io/post/best-ai-video-generators">5</a> <a href="https://www.motiontheagency.com/blog/top-generative-ai-video-tools">6</a> <a href="https://www.zignuts.com/blog/ai-video-gerneration">7</a> <a href="https://www.reddit.com/r/singularity/comments/1jz1ptw/what_are_your_projections_for_the_evolution_of_ai/">8</a> <a href="https://www.cnet.com/tech/services-and-software/best-ai-image-generators/">9</a> <a href="https://www.getadigital.com/blog/the-current-state-of-ai-image-generation-as-of-early-2025">10</a> <a href="https://www.trustinsights.ai/blog/2025/05/so-what-current-status-of-ai-image-generation/">11</a> <a href="https://zapier.com/blog/best-ai-video-generator/">12</a> <a href="https://mashable.com/article/best-ai-image-generator-1">13</a> <a href="https://www.canva.com/ai-art-generator/global-trends/">14</a> <a href="https://www.youtube.com/watch?v=-2tRBIzn07Y">15</a> <a href="https://www.reddit.com/r/StableDiffusion/comments/1kqqjpm/whats_the_best_ai_video_generator_in_2025_any/">16</a> <a href="https://hai.stanford.edu/ai-index/2025-ai-index-report">17</a> <a href="https://www.fastcompany.com/91411625/foundational-ai-next-big-things-in-tech-2025">18</a> <a href="https://www.reddit.com/r/AI_Agents/comments/1m68sso/which_ai_tool_is_best_for_image_generation_in_2025/">19</a> <a href="https://www.datacamp.com/blog/top-video-generation-models">20</a></p>
+<p>The progression of AI’s ability to create picture and video content has been nothing short of <strong>revolutionary and accelerating at an exponential rate</strong>.</p>
+<p>Here is an evaluation of the progression and a look at the current leading systems:</p>
+</section>
+<section id="evaluation-of-ai-content-creation-progression" class="level3">
+<h3 class="anchored" data-anchor-id="evaluation-of-ai-content-creation-progression">Evaluation of AI Content Creation Progression</h3>
+<p>The evolution can be broken down into three major phases:</p>
+<section id="early-stage-innovation-2014-2021" class="level4">
+<h4 class="anchored" data-anchor-id="early-stage-innovation-2014-2021">1. Early-Stage Innovation (2014-2021)</h4>
+<ul>
+<li><strong>Focus:</strong> Generative Adversarial Networks (GANs) and initial attempts at text-to-image.</li>
+<li><strong>Output Quality:</strong> Images were often abstract, low-resolution, or clearly synthetic. Early videos were mainly short, simple interpolations or basic stylizations with poor temporal coherence.</li>
+<li><strong>Key Challenge:</strong> Maintaining consistency, generating complex scenes, and achieving photorealism.</li>
+</ul>
+</section>
+<section id="diffusion-model-breakthrough-public-adoption-2022-2024" class="level4">
+<h4 class="anchored" data-anchor-id="diffusion-model-breakthrough-public-adoption-2022-2024">2. Diffusion Model Breakthrough &amp; Public Adoption (2022-2024)</h4>
+<ul>
+<li><strong>Focus:</strong> Diffusion models (like Stable Diffusion, DALL-E, Midjourney) and the rise of text-to-video models (like Runway Gen-1/Gen-2, Pika Labs).</li>
+<li><strong>Output Quality:</strong> <strong>Images</strong> achieved high-fidelity, photorealistic, and artistically compelling results, often indistinguishable from human-created digital art. <strong>Videos</strong> improved significantly in visual quality and the ability to interpret complex prompts, but were still limited in duration (a few seconds) and struggled with <strong>temporal coherence</strong> (objects changing shape, motion inconsistencies) and physical accuracy.</li>
+<li><strong>Key Challenge:</strong> Longer, narrative-driven video creation, and perfect physics/coherence.</li>
+</ul>
+</section>
+<section id="hyper-realism-length-and-coherence-2024---present" class="level4">
+<h4 class="anchored" data-anchor-id="hyper-realism-length-and-coherence-2024---present">3. Hyper-Realism, Length, and Coherence (2024 - Present)</h4>
+<ul>
+<li><strong>Focus:</strong> Massive, highly-trained models targeting cinematic quality, extended video length, and complex scene control (OpenAI Sora, Google Veo, Kling AI).</li>
+<li><strong>Output Quality:</strong> This is the era of “cinematic realism.” <strong>Videos</strong> are now capable of being one minute or longer, maintaining character and object consistency across the duration, and displaying realistic physics, camera motion (panning, zooming), and complex scene interactions. The line between AI-generated and professionally filmed content is increasingly blurred.</li>
+<li><strong>Current Challenges:</strong> Consistency over <em>very</em> long sequences (multiple minutes), intricate control over specific character actions and narrative, and generating high-quality native audio tracks synchronized with the video.</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="the-program-with-the-most-complete-picture-and-video-production-capabilities" class="level3">
+<h3 class="anchored" data-anchor-id="the-program-with-the-most-complete-picture-and-video-production-capabilities">The Program with the Most Complete Picture and Video Production Capabilities</h3>
+<p>The “most complete” system is a rapidly changing title, but as of the current state, the competition is primarily between two major players, with a strong contender providing a more open and integrated toolset:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">System</th>
+<th style="text-align: left;">Primary Strength</th>
+<th style="text-align: left;">Completeness/Features</th>
+<th style="text-align: left;">Status</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>OpenAI’s Sora</strong></td>
+<td style="text-align: left;"><strong>Unmatched Cinematic Quality and Language Understanding</strong></td>
+<td style="text-align: left;">Excellent photorealism, long video generation (up to 1 minute), strong adherence to complex prompts, and multi-shot capabilities. <em>(Image generation is not its current public focus, but DALL-E is the image complement)</em>.</td>
+<td style="text-align: left;">Currently in limited access/development.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Google’s Veo (e.g., Veo 3)</strong></td>
+<td style="text-align: left;"><strong>Strong All-in-One End-to-End Creation</strong></td>
+<td style="text-align: left;">Known for producing highly realistic videos, often including <strong>native audio</strong> and the ability to generate lip-synced character voices. It is designed for end-to-end video creation from a single prompt.</td>
+<td style="text-align: left;">Integrates with the broader Google AI ecosystem (Gemini).</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Runway (Gen-3, etc.)</strong></td>
+<td style="text-align: left;"><strong>Creator-Focused and Feature-Rich Platform</strong></td>
+<td style="text-align: left;">Provides a comprehensive suite of generative video <em>and</em> video editing tools (Gen-2/3, Motion Brush, text-to-image, video-to-video, inpainting). It’s a complete ecosystem for creators, offering high-quality results with strong user control.</td>
+<td style="text-align: left;">Widely accessible and constantly updated with new tools.</td>
+</tr>
+</tbody>
+</table>
+<section id="conclusion-on-most-complete" class="level4">
+<h4 class="anchored" data-anchor-id="conclusion-on-most-complete">Conclusion on “Most Complete”</h4>
+<p>The <strong>most powerful and visually impressive <em>generative model</em> for video</strong> is widely considered to be <strong>OpenAI’s Sora</strong>, based on its initial demonstrations of long, highly-coherent, and cinematic footage.</p>
+<p>However, the <strong>most complete <em>production platform</em> available to the public right now</strong> that combines both high-quality image generation (through an associated model like Midjourney or Stable Diffusion) with a wide array of generative and editing video tools is arguably <strong>Runway</strong>. For a truly <em>end-to-end video generation</em> solution that also excels with features like native audio, <strong>Google’s Veo</strong> is a leading contender.</p>
+</section>
+</section>
+</section>
+<section id="gemini-response" class="level2">
+<h2 class="anchored" data-anchor-id="gemini-response">Gemini Response</h2>
+<p>The progression of AI’s ability to create picture and video content has been nothing short of <strong>revolutionary and accelerating at an exponential rate</strong>.</p>
+<p>Here is an evaluation of the progression and a look at the current leading systems:</p>
+<section id="evaluation-of-ai-content-creation-progression-1" class="level3">
+<h3 class="anchored" data-anchor-id="evaluation-of-ai-content-creation-progression-1">Evaluation of AI Content Creation Progression</h3>
+<p>The evolution can be broken down into three major phases:</p>
+<section id="early-stage-innovation-2014-2021-1" class="level4">
+<h4 class="anchored" data-anchor-id="early-stage-innovation-2014-2021-1">1. Early-Stage Innovation (2014-2021)</h4>
+<ul>
+<li><strong>Focus:</strong> Generative Adversarial Networks (GANs) and initial attempts at text-to-image.</li>
+<li><strong>Output Quality:</strong> Images were often abstract, low-resolution, or clearly synthetic. Early videos were mainly short, simple interpolations or basic stylizations with poor temporal coherence.</li>
+<li><strong>Key Challenge:</strong> Maintaining consistency, generating complex scenes, and achieving photorealism.</li>
+</ul>
+</section>
+<section id="diffusion-model-breakthrough-public-adoption-2022-2024-1" class="level4">
+<h4 class="anchored" data-anchor-id="diffusion-model-breakthrough-public-adoption-2022-2024-1">2. Diffusion Model Breakthrough &amp; Public Adoption (2022-2024)</h4>
+<ul>
+<li><strong>Focus:</strong> Diffusion models (like Stable Diffusion, DALL-E, Midjourney) and the rise of text-to-video models (like Runway Gen-1/Gen-2, Pika Labs).</li>
+<li><strong>Output Quality:</strong> <strong>Images</strong> achieved high-fidelity, photorealistic, and artistically compelling results, often indistinguishable from human-created digital art. <strong>Videos</strong> improved significantly in visual quality and the ability to interpret complex prompts, but were still limited in duration (a few seconds) and struggled with <strong>temporal coherence</strong> (objects changing shape, motion inconsistencies) and physical accuracy.</li>
+<li><strong>Key Challenge:</strong> Longer, narrative-driven video creation, and perfect physics/coherence.</li>
+</ul>
+</section>
+<section id="hyper-realism-length-and-coherence-2024---present-1" class="level4">
+<h4 class="anchored" data-anchor-id="hyper-realism-length-and-coherence-2024---present-1">3. Hyper-Realism, Length, and Coherence (2024 - Present)</h4>
+<ul>
+<li><strong>Focus:</strong> Massive, highly-trained models targeting cinematic quality, extended video length, and complex scene control (OpenAI Sora, Google Veo, Kling AI).</li>
+<li><strong>Output Quality:</strong> This is the era of “cinematic realism.” <strong>Videos</strong> are now capable of being one minute or longer, maintaining character and object consistency across the duration, and displaying realistic physics, camera motion (panning, zooming), and complex scene interactions. The line between AI-generated and professionally filmed content is increasingly blurred.</li>
+<li><strong>Current Challenges:</strong> Consistency over <em>very</em> long sequences (multiple minutes), intricate control over specific character actions and narrative, and generating high-quality native audio tracks synchronized with the video.</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="the-program-with-the-most-complete-picture-and-video-production-capabilities-1" class="level3">
+<h3 class="anchored" data-anchor-id="the-program-with-the-most-complete-picture-and-video-production-capabilities-1">The Program with the Most Complete Picture and Video Production Capabilities</h3>
+<p>The “most complete” system is a rapidly changing title, but as of the current state, the competition is primarily between two major players, with a strong contender providing a more open and integrated toolset:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">System</th>
+<th style="text-align: left;">Primary Strength</th>
+<th style="text-align: left;">Completeness/Features</th>
+<th style="text-align: left;">Status</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>OpenAI’s Sora</strong></td>
+<td style="text-align: left;"><strong>Unmatched Cinematic Quality and Language Understanding</strong></td>
+<td style="text-align: left;">Excellent photorealism, long video generation (up to 1 minute), strong adherence to complex prompts, and multi-shot capabilities. <em>(Image generation is not its current public focus, but DALL-E is the image complement)</em>.</td>
+<td style="text-align: left;">Currently in limited access/development.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Google’s Veo (e.g., Veo 3)</strong></td>
+<td style="text-align: left;"><strong>Strong All-in-One End-to-End Creation</strong></td>
+<td style="text-align: left;">Known for producing highly realistic videos, often including <strong>native audio</strong> and the ability to generate lip-synced character voices. It is designed for end-to-end video creation from a single prompt.</td>
+<td style="text-align: left;">Integrates with the broader Google AI ecosystem (Gemini).</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Runway (Gen-3, etc.)</strong></td>
+<td style="text-align: left;"><strong>Creator-Focused and Feature-Rich Platform</strong></td>
+<td style="text-align: left;">Provides a comprehensive suite of generative video <em>and</em> video editing tools (Gen-2/3, Motion Brush, text-to-image, video-to-video, inpainting). It’s a complete ecosystem for creators, offering high-quality results with strong user control.</td>
+<td style="text-align: left;">Widely accessible and constantly updated with new tools.</td>
+</tr>
+</tbody>
+</table>
+<section id="conclusion-on-most-complete-1" class="level4">
+<h4 class="anchored" data-anchor-id="conclusion-on-most-complete-1">Conclusion on “Most Complete”</h4>
+<p>The <strong>most powerful and visually impressive <em>generative model</em> for video</strong> is widely considered to be <strong>OpenAI’s Sora</strong>, based on its initial demonstrations of long, highly-coherent, and cinematic footage.</p>
+<p>However, the <strong>most complete <em>production platform</em> available to the public right now</strong> that combines both high-quality image generation (through an associated model like Midjourney or Stable Diffusion) with a wide array of generative and editing video tools is arguably <strong>Runway</strong>. For a truly <em>end-to-end video generation</em> solution that also excels with features like native audio, <strong>Google’s Veo</strong> is a leading contender.</p>
+</section>
+</section>
+</section>
+<section id="personal-experience" class="level2">
+<h2 class="anchored" data-anchor-id="personal-experience">Personal Experience</h2>
+<p>I’ve been playing around with Sora just for fun, and honestly, it’s wild how real everything looks. I’ll type out a random idea, like a dog surfing at sunset or a neon city in the rain, and within seconds it feels like a mini movie trailer. The physics and lighting are crazy good, and I love how I can tweak little details to make each clip feel cinematic. It’s kind of addictive—like I’m directing short films without ever picking up a camera.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/dantetz\.github\.io\/comm4190_F25_Using_LLMs_Blog\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
