@@ -2,82 +2,86 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://dantetz.github.io/comm4190_F25_Using_LLMs_Blog/about.html</loc>
-    <lastmod>2025-10-26T18:45:48.644Z</lastmod>
+    <lastmod>2025-10-26T19:26:23.363Z</lastmod>
   </url>
   <url>
     <loc>https://dantetz.github.io/comm4190_F25_Using_LLMs_Blog/posts/Project Prompting .html</loc>
-    <lastmod>2025-10-26T18:45:48.770Z</lastmod>
+    <lastmod>2025-10-26T19:26:23.486Z</lastmod>
   </url>
   <url>
     <loc>https://dantetz.github.io/comm4190_F25_Using_LLMs_Blog/posts/012_Post_Book_Reviews/Post_Book_Reviews.html</loc>
-    <lastmod>2025-10-26T18:45:48.720Z</lastmod>
+    <lastmod>2025-10-26T19:26:23.436Z</lastmod>
   </url>
   <url>
     <loc>https://dantetz.github.io/comm4190_F25_Using_LLMs_Blog/posts/006_Post_Philly_Food/006_Philadelphia_Food_Recs.html</loc>
-    <lastmod>2025-10-26T18:45:48.714Z</lastmod>
+    <lastmod>2025-10-26T19:26:23.431Z</lastmod>
   </url>
   <url>
-    <loc>https://dantetz.github.io/comm4190_F25_Using_LLMs_Blog/posts/013_Post_Book_Analysis/012_Book_Analysis.html</loc>
-    <lastmod>2025-10-26T18:45:48.720Z</lastmod>
-  </url>
-  <url>
-    <loc>https://dantetz.github.io/comm4190_F25_Using_LLMs_Blog/posts/010_Post_Putter_Recs/010_Putter_Recs.html</loc>
-    <lastmod>2025-10-26T18:45:48.715Z</lastmod>
-  </url>
-  <url>
-    <loc>https://dantetz.github.io/comm4190_F25_Using_LLMs_Blog/posts/001_Post_Book_Rec/Book_Rec.html</loc>
-    <lastmod>2025-10-26T18:45:48.645Z</lastmod>
-  </url>
-  <url>
-    <loc>https://dantetz.github.io/comm4190_F25_Using_LLMs_Blog/posts/Untitled1.html</loc>
-    <lastmod>2025-10-26T18:45:48.799Z</lastmod>
-  </url>
-  <url>
-    <loc>https://dantetz.github.io/comm4190_F25_Using_LLMs_Blog/posts/005_Image_Creation_Post/005_Image_Creation_Post.html</loc>
-    <lastmod>2025-10-26T18:45:48.714Z</lastmod>
-  </url>
-  <url>
-    <loc>https://dantetz.github.io/comm4190_F25_Using_LLMs_Blog/index.html</loc>
-    <lastmod>2025-10-26T18:45:48.644Z</lastmod>
-  </url>
-  <url>
-    <loc>https://dantetz.github.io/comm4190_F25_Using_LLMs_Blog/posts/007_Post_Philly_Fitness/007_Philly_Fitness.html</loc>
-    <lastmod>2025-10-26T18:45:48.714Z</lastmod>
-  </url>
-  <url>
-    <loc>https://dantetz.github.io/comm4190_F25_Using_LLMs_Blog/posts/Untitled.html</loc>
-    <lastmod>2025-10-26T18:45:48.799Z</lastmod>
-  </url>
-  <url>
-    <loc>https://dantetz.github.io/comm4190_F25_Using_LLMs_Blog/posts/003_Post_Sports_Bets/003_Post_Sports_Bets.html</loc>
-    <lastmod>2025-10-26T18:45:48.646Z</lastmod>
-  </url>
-  <url>
-    <loc>https://dantetz.github.io/comm4190_F25_Using_LLMs_Blog/posts/002_Post_Flight_Options/002_Flight_Options.html</loc>
-    <lastmod>2025-10-26T18:45:48.646Z</lastmod>
-  </url>
-  <url>
-    <loc>https://dantetz.github.io/comm4190_F25_Using_LLMs_Blog/posts/004_Post_Grant_Options/004_Grant_Options.html</loc>
-    <lastmod>2025-10-26T18:45:48.646Z</lastmod>
+    <loc>https://dantetz.github.io/comm4190_F25_Using_LLMs_Blog/posts/014_Post_Interview_Prep/012_Interview_Prep.html</loc>
+    <lastmod>2025-10-26T19:26:23.437Z</lastmod>
   </url>
   <url>
     <loc>https://dantetz.github.io/comm4190_F25_Using_LLMs_Blog/posts/011_Post_Video_Creation/011_Post_Video_Creation.html</loc>
-    <lastmod>2025-10-26T18:45:48.715Z</lastmod>
+    <lastmod>2025-10-26T19:26:23.432Z</lastmod>
+  </url>
+  <url>
+    <loc>https://dantetz.github.io/comm4190_F25_Using_LLMs_Blog/posts/004_Post_Grant_Options/004_Grant_Options.html</loc>
+    <lastmod>2025-10-26T19:26:23.365Z</lastmod>
+  </url>
+  <url>
+    <loc>https://dantetz.github.io/comm4190_F25_Using_LLMs_Blog/posts/002_Post_Flight_Options/002_Flight_Options.html</loc>
+    <lastmod>2025-10-26T19:26:23.365Z</lastmod>
+  </url>
+  <url>
+    <loc>https://dantetz.github.io/comm4190_F25_Using_LLMs_Blog/posts/003_Post_Sports_Bets/003_Post_Sports_Bets.html</loc>
+    <lastmod>2025-10-26T19:26:23.365Z</lastmod>
+  </url>
+  <url>
+    <loc>https://dantetz.github.io/comm4190_F25_Using_LLMs_Blog/posts/Untitled.html</loc>
+    <lastmod>2025-10-26T19:26:23.516Z</lastmod>
+  </url>
+  <url>
+    <loc>https://dantetz.github.io/comm4190_F25_Using_LLMs_Blog/posts/007_Post_Philly_Fitness/007_Philly_Fitness.html</loc>
+    <lastmod>2025-10-26T19:26:23.431Z</lastmod>
+  </url>
+  <url>
+    <loc>https://dantetz.github.io/comm4190_F25_Using_LLMs_Blog/index.html</loc>
+    <lastmod>2025-10-26T19:26:23.363Z</lastmod>
+  </url>
+  <url>
+    <loc>https://dantetz.github.io/comm4190_F25_Using_LLMs_Blog/posts/005_Image_Creation_Post/005_Image_Creation_Post.html</loc>
+    <lastmod>2025-10-26T19:26:23.430Z</lastmod>
+  </url>
+  <url>
+    <loc>https://dantetz.github.io/comm4190_F25_Using_LLMs_Blog/posts/Untitled1.html</loc>
+    <lastmod>2025-10-26T19:26:23.516Z</lastmod>
+  </url>
+  <url>
+    <loc>https://dantetz.github.io/comm4190_F25_Using_LLMs_Blog/posts/001_Post_Book_Rec/Book_Rec.html</loc>
+    <lastmod>2025-10-26T19:26:23.364Z</lastmod>
+  </url>
+  <url>
+    <loc>https://dantetz.github.io/comm4190_F25_Using_LLMs_Blog/posts/010_Post_Putter_Recs/010_Putter_Recs.html</loc>
+    <lastmod>2025-10-26T19:26:23.431Z</lastmod>
+  </url>
+  <url>
+    <loc>https://dantetz.github.io/comm4190_F25_Using_LLMs_Blog/posts/013_Post_Book_Analysis/012_Book_Analysis.html</loc>
+    <lastmod>2025-10-26T19:26:23.436Z</lastmod>
   </url>
   <url>
     <loc>https://dantetz.github.io/comm4190_F25_Using_LLMs_Blog/posts/Untitled3.html</loc>
-    <lastmod>2025-10-26T18:45:48.799Z</lastmod>
+    <lastmod>2025-10-26T19:26:23.516Z</lastmod>
   </url>
   <url>
     <loc>https://dantetz.github.io/comm4190_F25_Using_LLMs_Blog/posts/009_Post_Classes/009_Classes.html</loc>
-    <lastmod>2025-10-26T18:45:48.715Z</lastmod>
+    <lastmod>2025-10-26T19:26:23.431Z</lastmod>
   </url>
   <url>
     <loc>https://dantetz.github.io/comm4190_F25_Using_LLMs_Blog/posts/Untitled2.html</loc>
-    <lastmod>2025-10-26T18:45:48.799Z</lastmod>
+    <lastmod>2025-10-26T19:26:23.516Z</lastmod>
   </url>
   <url>
     <loc>https://dantetz.github.io/comm4190_F25_Using_LLMs_Blog/posts/008_Post_First_Car/008_First_Car.html</loc>
-    <lastmod>2025-10-26T18:45:48.714Z</lastmod>
+    <lastmod>2025-10-26T19:26:23.431Z</lastmod>
   </url>
 </urlset>
