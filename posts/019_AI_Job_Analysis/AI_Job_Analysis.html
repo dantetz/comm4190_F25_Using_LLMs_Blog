@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.26">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Dante">
+<meta name="dcterms.date" content="2025-11-22">
+<meta name="description" content="Asking LLM’s about their opinions on the future of AI and its potential for Job loss or job creation">
+
+<title>AI Job Loss Analysis – My Explorations with LLMs</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-0b37c64f34216b628666a8dac638b53b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed fullcontent quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">My Explorations with LLMs</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com"> <i class="bi bi-twitter" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">AI Job Loss Analysis</h1>
+                  <div>
+        <div class="description">
+          Asking LLM’s about their opinions on the future of AI and its potential for Job loss or job creation
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">LLMs</div>
+                <div class="quarto-category">Learning</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Dante </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">November 22, 2025</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+<section id="prompt" class="level2">
+<h2 class="anchored" data-anchor-id="prompt">Prompt</h2>
+<p><span style="background-color: yellow ; padding: 5px;">How do you think the future of the job market will look as a result of AI. What jobs do you think might be more at risk? Do you have evidence for that? How do you think the government might handle the higher unemployment?</span></p>
+<p>Alright — here are all three: (A) most at-risk jobs, (B) jobs AI will <em>increase</em> demand for, and (C) a tailored analysis for <strong>your world</strong> (finance + consulting + political science + law-adjacent IR work). I’ll keep it super clear and grounded in real evidence/trends.</p>
+<hr>
+</section>
+<section id="a-the-20-jobs-most-at-risk-from-ai-ranked-why" class="level1">
+<h1><strong>A) The 20 Jobs Most at Risk From AI (Ranked + Why)</strong></h1>
+<p><em>(Based on IMF/OECD exposure studies, WEF task-automation data, and company-level hiring freezes.)</em></p>
+<section id="data-entry-clerks" class="level3">
+<h3 class="anchored" data-anchor-id="data-entry-clerks"><strong>1. Data entry clerks</strong></h3>
+<p>Fully automatable — LLMs handle structured text perfectly.</p>
+</section>
+<section id="basic-administrative-assistants" class="level3">
+<h3 class="anchored" data-anchor-id="basic-administrative-assistants"><strong>2. Basic administrative assistants</strong></h3>
+<p>Scheduling, email filtering, drafting memos = trivial for AI.</p>
+</section>
+<section id="customer-support-call-centers" class="level3">
+<h3 class="anchored" data-anchor-id="customer-support-call-centers"><strong>3. Customer support &amp; call centers</strong></h3>
+<p>Already being replaced by AI agents and chatbots.</p>
+</section>
+<section id="paralegals-legal-researchers" class="level3">
+<h3 class="anchored" data-anchor-id="paralegals-legal-researchers"><strong>4. Paralegals &amp; legal researchers</strong></h3>
+<p>AI performs case summarization, contract review, discovery.</p>
+</section>
+<section id="junior-financial-analysts" class="level3">
+<h3 class="anchored" data-anchor-id="junior-financial-analysts"><strong>5. Junior financial analysts</strong></h3>
+<p>AI does modeling templates, comps, memos, and dashboards.</p>
+</section>
+<section id="accounts-payablereceivable-clerks" class="level3">
+<h3 class="anchored" data-anchor-id="accounts-payablereceivable-clerks"><strong>6. Accounts payable/receivable clerks</strong></h3>
+<p>Invoice processing &amp; reconciliation are easily automated.</p>
+</section>
+<section id="payroll-clerks-hr-screeners" class="level3">
+<h3 class="anchored" data-anchor-id="payroll-clerks-hr-screeners"><strong>7. Payroll clerks &amp; HR screeners</strong></h3>
+<p>AI can screen resumes, manage onboarding, handle compliance docs.</p>
+</section>
+<section id="basic-copywriters-content-writers" class="level3">
+<h3 class="anchored" data-anchor-id="basic-copywriters-content-writers"><strong>8. Basic copywriters &amp; content writers</strong></h3>
+<p>SEO writing, product descriptions, social media drafts.</p>
+</section>
+<section id="market-researchers-entry-level" class="level3">
+<h3 class="anchored" data-anchor-id="market-researchers-entry-level"><strong>9. Market researchers (entry-level)</strong></h3>
+<p>AI does survey analysis, segmentation, data summaries.</p>
+</section>
+<section id="journalists-low-tier-content-mills" class="level3">
+<h3 class="anchored" data-anchor-id="journalists-low-tier-content-mills"><strong>10. Journalists (low-tier / “content mills”)</strong></h3>
+<p>Local news + aggregation especially vulnerable.</p>
+</section>
+<section id="insurance-underwriters" class="level3">
+<h3 class="anchored" data-anchor-id="insurance-underwriters"><strong>11. Insurance underwriters</strong></h3>
+<p>Algorithmic risk scoring replaces heavy routine work.</p>
+</section>
+<section id="real-estate-assistants" class="level3">
+<h3 class="anchored" data-anchor-id="real-estate-assistants"><strong>12. Real estate assistants</strong></h3>
+<p>AI handles listings, comps, outreach, client qualification.</p>
+</section>
+<section id="technical-support-tier-1" class="level3">
+<h3 class="anchored" data-anchor-id="technical-support-tier-1"><strong>13. Technical support (Tier 1)</strong></h3>
+<p>AI solves common troubleshooting faster.</p>
+</section>
+<section id="proofreaders" class="level3">
+<h3 class="anchored" data-anchor-id="proofreaders"><strong>14. Proofreaders</strong></h3>
+<p>Grammar tools are already extremely strong.</p>
+</section>
+<section id="loan-officers-initial-screening" class="level3">
+<h3 class="anchored" data-anchor-id="loan-officers-initial-screening"><strong>15. Loan officers (initial screening)</strong></h3>
+<p>Automated credit scoring + income verification.</p>
+</section>
+<section id="translators-non-literary" class="level3">
+<h3 class="anchored" data-anchor-id="translators-non-literary"><strong>16. Translators (non-literary)</strong></h3>
+<p>Straightforward translation is nearly solved.</p>
+</section>
+<section id="bookkeepers" class="level3">
+<h3 class="anchored" data-anchor-id="bookkeepers"><strong>17. Bookkeepers</strong></h3>
+<p>Accounting software + AI categorization.</p>
+</section>
+<section id="executive-assistants-traditional" class="level3">
+<h3 class="anchored" data-anchor-id="executive-assistants-traditional"><strong>18. Executive assistants (traditional)</strong></h3>
+<p>Travel booking, note-taking, admin ops largely automatable.</p>
+</section>
+<section id="basic-graphic-designers" class="level3">
+<h3 class="anchored" data-anchor-id="basic-graphic-designers"><strong>19. Basic graphic designers</strong></h3>
+<p>Logos, mockups, simple visuals — AI does them instantly.</p>
+</section>
+<section id="telemarketers-sales-development-reps" class="level3">
+<h3 class="anchored" data-anchor-id="telemarketers-sales-development-reps"><strong>20. Telemarketers &amp; sales development reps</strong></h3>
+<p>LLM-based outreach tools are already replacing SDR roles.</p>
+<p><strong>Pattern:</strong> These jobs share 3 traits:</p>
+<ul>
+<li>repetitive tasks</li>
+<li>rule-based reasoning</li>
+<li>heavy text or structured data</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="b-jobs-ai-will-increase-demand-for" class="level1">
+<h1><strong>B) Jobs AI Will <em>Increase</em> Demand For</strong></h1>
+<section id="ai-workflow-designers-prompt-engineers" class="level3">
+<h3 class="anchored" data-anchor-id="ai-workflow-designers-prompt-engineers"><strong>1. AI workflow designers (“prompt engineers”)</strong></h3>
+<p>People who build automation chains for businesses. Demand exploding.</p>
+</section>
+<section id="data-scientists-ml-engineers" class="level3">
+<h3 class="anchored" data-anchor-id="data-scientists-ml-engineers"><strong>2. Data scientists &amp; ML engineers</strong></h3>
+<p>AI multiplies their reach — but humans still architect systems.</p>
+</section>
+<section id="ai-product-managers" class="level3">
+<h3 class="anchored" data-anchor-id="ai-product-managers"><strong>3. AI product managers</strong></h3>
+<p>Massive hiring across tech + finance + enterprise SaaS.</p>
+</section>
+<section id="cybersecurity-analysts" class="level3">
+<h3 class="anchored" data-anchor-id="cybersecurity-analysts"><strong>4. Cybersecurity analysts</strong></h3>
+<p>AI increases attack surfaces; demand for defenders skyrockets.</p>
+</section>
+<section id="automation-integration-managers" class="level3">
+<h3 class="anchored" data-anchor-id="automation-integration-managers"><strong>5. Automation integration managers</strong></h3>
+<p>People who connect AI tools to real operations (CRM, ERP, etc.)</p>
+</section>
+<section id="compliance-audit-model-risk-managers" class="level3">
+<h3 class="anchored" data-anchor-id="compliance-audit-model-risk-managers"><strong>6. Compliance, audit, &amp; model-risk managers</strong></h3>
+<p>Regulators now expect AI governance — huge growth area (your world of bank auditing fits here).</p>
+</section>
+<section id="human-centered-fields" class="level3">
+<h3 class="anchored" data-anchor-id="human-centered-fields"><strong>7. Human-centered fields</strong></h3>
+<ul>
+<li>nursing</li>
+<li>therapy/counseling</li>
+<li>social work</li>
+<li>teaching These require emotional labor AI can’t replicate.</li>
+</ul>
+</section>
+<section id="skilled-trades" class="level3">
+<h3 class="anchored" data-anchor-id="skilled-trades"><strong>8. Skilled trades</strong></h3>
+<p>Electricians, plumbers, mechanics. AI doesn’t have hands.</p>
+</section>
+<section id="high-level-creative-direction" class="level3">
+<h3 class="anchored" data-anchor-id="high-level-creative-direction"><strong>9. High-level creative direction</strong></h3>
+<p>AI handles drafts; humans direct strategy, taste, and final judgment.</p>
+</section>
+<section id="diplomacy-negotiation-lawmaking-and-ir-analysis" class="level3">
+<h3 class="anchored" data-anchor-id="diplomacy-negotiation-lawmaking-and-ir-analysis"><strong>10. Diplomacy, negotiation, lawmaking, and IR analysis</strong></h3>
+<p>AI can support research but can’t build coalitions or wield political legitimacy.</p>
+<hr>
+</section>
+</section>
+<section id="c-personalized-analysis-your-fields-finance-consulting-irlaw-politics" class="level1">
+<h1><strong>C) PERSONALIZED ANALYSIS — YOUR FIELDS (finance + consulting + IR/law + politics)</strong></h1>
+<p>You’re in a really interesting hybrid of fields — and AI affects each differently.</p>
+<hr>
+<section id="investment-banking-private-equity-consulting" class="level2">
+<h2 class="anchored" data-anchor-id="investment-banking-private-equity-consulting"><strong>1. Investment Banking / Private Equity / Consulting</strong></h2>
+<section id="tasks-heavily-hit" class="level3">
+<h3 class="anchored" data-anchor-id="tasks-heavily-hit"><strong>Tasks heavily hit:</strong></h3>
+<ul>
+<li>drafting CIMs, teasers, board decks</li>
+<li>building vanilla financial models</li>
+<li>comps / precedent searches</li>
+<li>due diligence summaries</li>
+<li>industry overviews</li>
+<li>client-ready writeups</li>
+</ul>
+<p>Large banks (including BofA) are already piloting AI tools that do 60–70% of this.</p>
+</section>
+<section id="but-heres-the-key" class="level3">
+<h3 class="anchored" data-anchor-id="but-heres-the-key"><strong>But here’s the key:</strong></h3>
+<p><strong>AI is replacing tasks, not bankers.</strong> Humans are still needed for:</p>
+<ul>
+<li>negotiations</li>
+<li>client relationship management</li>
+<li>judgment calls on risk</li>
+<li>managing deals</li>
+<li>handling politics</li>
+<li>persuasion &amp; trust</li>
+</ul>
+<p><strong>Real risk:</strong> fewer junior seats. Not zero — but fewer.</p>
+</section>
+<section id="your-positioning" class="level3">
+<h3 class="anchored" data-anchor-id="your-positioning"><strong>Your positioning:</strong></h3>
+<p>You’re actually <em>well</em>-positioned because:</p>
+<ul>
+<li>you understand both finance AND political/regulatory environments</li>
+<li>you understand high-level judgment (IR theory, geopolitics)</li>
+<li>you have communication skills that AI can’t replicate</li>
+<li>you’re strong at synthesis and persuasion</li>
+</ul>
+<p>Those are the EXACT skills AI cannot substitute.</p>
+<hr>
+</section>
+</section>
+<section id="government-international-relations-policy-law" class="level2">
+<h2 class="anchored" data-anchor-id="government-international-relations-policy-law"><strong>2. Government, International Relations, Policy, Law</strong></h2>
+<p>These are <em>not</em> highly automatable.</p>
+<section id="ai-can-assist-in" class="level3">
+<h3 class="anchored" data-anchor-id="ai-can-assist-in"><strong>AI can assist in:</strong></h3>
+<ul>
+<li>drafting briefs</li>
+<li>summarizing laws</li>
+<li>translating documents</li>
+<li>analyzing huge datasets</li>
+</ul>
+</section>
+<section id="but-cannot-replace" class="level3">
+<h3 class="anchored" data-anchor-id="but-cannot-replace"><strong>But cannot replace:</strong></h3>
+<ul>
+<li>political legitimacy</li>
+<li>coalition-building</li>
+<li>human negotiation</li>
+<li>strategic persuasion</li>
+<li>legal advocacy</li>
+<li>public accountability</li>
+<li>in-person diplomacy</li>
+</ul>
+<p>IR is fundamentally about <strong>humans, power, and perception</strong> — AI is just a tool.</p>
+<p>Your interest in political science, trade law, and populism is inherently “human conflict + institutions,” which AI cannot mediate alone.</p>
+<hr>
+</section>
+</section>
+<section id="academic-analysis-critical-theory-philosophy" class="level2">
+<h2 class="anchored" data-anchor-id="academic-analysis-critical-theory-philosophy"><strong>3. Academic analysis, critical theory, philosophy</strong></h2>
+<p>These fields don’t automate well because:</p>
+<ul>
+<li>new ideas require originality + worldview</li>
+<li>scholarship requires judgment</li>
+<li>writing has a voice and identity AI helps, but cannot be the scholar.</li>
+</ul>
+<p>You’re safe here too.</p>
+<hr>
+</section>
+</section>
+<section id="bottom-line-for-you" class="level1">
+<h1><strong>BOTTOM LINE FOR YOU</strong></h1>
+<p><strong>Your risk zones:</strong></p>
+<ul>
+<li>repetitive financial modeling</li>
+<li>basic memo drafting</li>
+<li>low-level research</li>
+<li>entry-stage analyst work</li>
+</ul>
+<p><strong>Your advantage zones:</strong></p>
+<ul>
+<li>IR + finance + law hybrid expertise</li>
+<li>geopolitical analysis</li>
+<li>persuasion, strategy, rhetoric</li>
+<li>leadership &amp; communication</li>
+<li>regulatory interpretation</li>
+<li>complex judgment under uncertainty</li>
+<li>relationship-driven roles (IB, consulting, diplomacy, public sector)</li>
+<li>anything requiring political sensitivity or human trust</li>
+</ul>
+<p>People like you — who blend economics, law, geopolitics, analysis, writing, and interpersonal intelligence — tend to <strong>survive AND benefit</strong> from AI transitions.</p>
+<section id="if-you-had-to-summarize-this-in-a-picture-what-picture-would-you-pick-respond-with-an-image" class="level2">
+<h2 class="anchored" data-anchor-id="if-you-had-to-summarize-this-in-a-picture-what-picture-would-you-pick-respond-with-an-image">If you had to summarize this in a picture, what picture would you pick? Respond with an image</h2>
+<p>https://chatgpt.com/backend-api/estuary/content?id=file_00000000cfe072309014af2ecaa0b928&amp;ts=489958&amp;p=fs&amp;cid=1&amp;sig=c8fa6e2e6627f7a7178d7f21bbfa347a6afa1f4ded989f55d506ab23f68fc257&amp;v=0<img src="AI_Job_Analysis_files/figure-html/68c7dbb4-8e5c-4df2-af4f-dbd9e7da0f63-1-71356cb1-dacb-4384-aa71-0f369557681b.png" class="img-fluid" alt="image.png">!</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/dantetz\.github\.io\/comm4190_F25_Using_LLMs_Blog\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
