@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.26">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Dante">
+<meta name="dcterms.date" content="2025-11-22">
+<meta name="description" content="Asking LLM’s to Evaluate and Compare Food Ingredients in Different Countries">
+
+<title>Ingredient Comparison – My Explorations with LLMs</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-0b37c64f34216b628666a8dac638b53b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed fullcontent quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">My Explorations with LLMs</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com"> <i class="bi bi-twitter" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Ingredient Comparison</h1>
+                  <div>
+        <div class="description">
+          Asking LLM’s to Evaluate and Compare Food Ingredients in Different Countries
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">LLMs</div>
+                <div class="quarto-category">Learning</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Dante </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">November 22, 2025</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+<section id="initial-premise" class="level1">
+<h1>Initial Premise</h1>
+<p><em>I wanted to compare the ingredients of the same packaged foods across different countries and continents. I asked Chat GPT 5 to compare the ingredient lists of speciifed, well known snacks and analyze them to see how they differ across countries</em></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="016_Ingredient_Comparison_files/figure-html/bf90f826-b326-4331-bed7-262ee144bc48-1-3d831e73-effa-479a-ba30-ebca4c034774.jpg" class="img-fluid figure-img"></p>
+<figcaption>download.jpg</figcaption>
+</figure>
+</div>
+<p>Here’s a detailed comparison of ingredient-lists for a set of popular snacks (two you asked for + four others), across different regions (US, Europe, Asia) where I found reliable data. The focus is on key ingredients and noticeable region-to-region variations (e.g., sweeteners, oils, additives, colours). <strong>Note</strong>: Ingredients can vary by flavour, product size or local manufacturing—so this is a snapshot, not a guarantee of all versions.</p>
+<hr>
+<section id="snacks-compared" class="level3">
+<h3 class="anchored" data-anchor-id="snacks-compared">Snacks compared</h3>
+<ol type="1">
+<li>HARIBO Goldbears (gummy bears)</li>
+<li>Lay’s Classic Potato Chips</li>
+<li>Skittles Original Fruity Candy</li>
+<li>Pringles Original Potato Crisps</li>
+<li>M&amp;M’s Milk Chocolate Candies</li>
+<li>Doritos (I’ll mention briefly, though full ingredient data varied)</li>
+</ol>
+<p>For each I show ingredient highlights in US vs Europe vs Asia (where available) and then summarise “similar ingredients” across them.</p>
+<hr>
+</section>
+<section id="haribo-goldbears" class="level2">
+<h2 class="anchored" data-anchor-id="haribo-goldbears">1. HARIBO Goldbears</h2>
+<p><strong>US</strong>:</p>
+<ul>
+<li>“Glucose syrup (from wheat or corn), sugar, gelatin, dextrose (from wheat or corn), contains &lt; 2% of: citric acid, artificial and natural flavours, palm oil …” (<a href="https://asiangroceryuk.co.uk/products/m-m-s-chocolate-bag-45g?srsltid=AfmBOorL6Is1fUZtWG129E155aH-ekrM5-_nYtxIFiQALObygK7SNvw6&amp;utm_source=chatgpt.com" title="M&amp;M's Chocolate Bag 45g">Asian Online Superstore UK</a>)</li>
+<li>Another listing: “Glucose syrup (from wheat or corn), sugar, gelatin, dextrose (from wheat or corn), corn starch, artificial and natural flavours, palm oil …” (<a href="https://foodbabe.com/why-are-mms-in-america-made-with-artificial-ingredients-they-dont-use-in-other-countries/?utm_source=chatgpt.com" title="Why are M&amp;M's in America made with artificial ingredients they don't ...">Food Babe</a>)</li>
+</ul>
+<p><strong>Europe</strong> (e.g., Germany / UK):</p>
+<ul>
+<li>“Glucose syrup, sugar, gelatine, dextrose, <strong>fruit juice from concentrate</strong> (apple, strawberry, raspberry, orange, lemon, pineapple) 2 %, corn starch, flavouring, glazing agent (carnauba wax)” (<a href="https://aroyscandyshop.be/en/cookies-chocolate/940-mm-s-chocolate-45-gr-40111490.html?utm_source=chatgpt.com" title="M&amp;M's Chocolate 45 Gr">aroyscandyshop.be</a>)</li>
+<li>Note: seems to omit palm oil (or at least list differently) and emphasises fruit-juice concentrates.</li>
+</ul>
+<p><strong>Asia</strong> (Singapore / e.g., halal version):</p>
+<ul>
+<li>On an NTUC FairPrice (Singapore) page: “Glucose syrup, Sugar, <strong>Beef Gelatine – Halal</strong>, Dextrose, Fruit Juice Concentrates (Apple, Strawberry, Raspberry, Orange, Lemon, Pineapple)”</li>
+<li>On Amazon.sg version: “Glucose Syrup (From Wheat or Corn), Sugar, Gelatin, Dextrose (From Wheat or Corn), …”</li>
+<li>China / broader Asia: fewer publicly detailed ingredient lists easily found, but likely similar to US format (with gelatin, sugar, corn/wheat syrup, palm oil) unless local variant.</li>
+</ul>
+<p><strong>Key Differences / Observations</strong>:</p>
+<ul>
+<li>European version emphasises fruit juice concentrates rather than “artificial flavours” as early on in US version.</li>
+<li>US version includes palm oil (or palm kernel oil) explicitly; EU version less emphasised (or perhaps uses differently).</li>
+<li>Asia version (Singapore) modifies gelatine source (beef, halal) to accommodate local dietary/halal regulations.</li>
+<li>All include glucose syrup, sugar, gelatin/dextrose components — strong commonality.</li>
+</ul>
+<hr>
+</section>
+<section id="lays-classic-potato-chips" class="level2">
+<h2 class="anchored" data-anchor-id="lays-classic-potato-chips">2. Lay’s Classic Potato Chips</h2>
+<p><strong>US</strong>:</p>
+<ul>
+<li>Example: “Potatoes, Vegetable Oil (Canola, Corn, Soybean, and/or Sunflower Oil), and Salt.” (<a href="https://www.germanfoods.shop/MMs-Schokolinsen-Crispy-128g_1?utm_source=chatgpt.com" title="M&amp;M's Schokolinsen Crispy 128g - GERMANFOOD.shop">German Food Shop</a>)</li>
+<li>Another listing: “Potatoes, Vegetable Oil (Sunflower, Corn and/or Canola Oil), and Salt.” (<a href="https://de.wikipedia.org/wiki/M%26M%E2%80%99s?utm_source=chatgpt.com" title="M&amp;M’s">Wikipedia</a>)</li>
+</ul>
+<p><strong>Europe</strong> (for example UK version via parent brand Walkers):</p>
+<ul>
+<li>“Potatoes, Vegetable Oils (Sunflower, Rapeseed, in varying proportions), Salt, Antioxidants (Rosemary Extract, Ascorbic Acid, Tocopherol Rich Extract).”</li>
+<li>So European version emphasises rapeseed (canola) and uses natural antioxidant extracts rather than perhaps unspecified chemicals.</li>
+</ul>
+<p><strong>Asia</strong> (China / Singapore etc):</p>
+<ul>
+<li>Example for China: “Potato Flour (Potato, Emulsifier (E471), Acid (E330), Blended Vegetable Oil (Soybean), Pregelatinised Starch, Original Flavor Seasoning (Lactose …)”</li>
+<li>This is interesting: in China version, the base is potato flour (not necessarily whole potato slices) + additional starch, emulsifier, acid (E330 = citric acid), blended vegetable oil (soybean) and “original flavour seasoning” which contains lactose etc.</li>
+</ul>
+<p><strong>Key Differences / Observations</strong>:</p>
+<ul>
+<li>US/Europe both use “Potatoes, vegetable oil, salt” fairly cleanly, though Europe also adds natural antioxidants.</li>
+<li>Asian version (China) significantly different: uses potato flour instead of whole potatoes (so more processed), includes emulsifier E471, acid E330, starch — indicating more “chip-formulated” than simple sliced potato. Also oil blends differ (soybean).</li>
+<li>Across all: Vegetables (potato/potato flour), vegetable oil, salt — core common ingredients.</li>
+</ul>
+<hr>
+</section>
+<section id="skittles-original-fruity-candy" class="level2">
+<h2 class="anchored" data-anchor-id="skittles-original-fruity-candy">3. Skittles Original Fruity Candy</h2>
+<p><strong>US</strong>:</p>
+<ul>
+<li>Ingredients (US site): “Sugar, Corn Syrup, Hydrogenated Palm Kernel Oil; Less Than 2% Of: Citric Acid, Tapioca Dextrin, Modified Corn Starch, Natural and Artificial Flavours, Colors (Red 40, Yellow 6, Yellow 5, Blue 1, etc.), Carnauba Wax”</li>
+<li>Note heavy use of artificial colours.</li>
+</ul>
+<p><strong>Europe</strong>:</p>
+<ul>
+<li>While I didn’t find a full EU ingredient list in this moment for Skittles, regulatory commentary: EU region forces removal of some artificial dyes (e.g., E102, E110) and require warnings. (<a href="https://foodbabe.com/why-are-mms-in-america-made-with-artificial-ingredients-they-dont-use-in-other-countries/?utm_source=chatgpt.com" title="Why are M&amp;M's in America made with artificial ingredients they don't ...">Food Babe</a>)</li>
+<li>So likely EU version uses fewer/artificial colours, maybe different sweetener sources.</li>
+</ul>
+<p><strong>Asia</strong>:</p>
+<ul>
+<li>Specific list more elusive, but typically the US version or slightly modified for regional compliance (possible removal/replacement of certain dyes) — data not found in my search quickly.</li>
+</ul>
+<p><strong>Key Differences / Observations</strong>:</p>
+<ul>
+<li>US version uses hydrogenated palm kernel oil, corn syrup, sugar, artificial colours.</li>
+<li>Europe tends to have stronger regulation of certain dyes, so ingredient list may differ—example commentary suggests fewer artificial colours in UK/EU versions.</li>
+<li>Across all: sugar + corn syrup (or other syrup) + fruit flavouring + candy shell oil/fats + glazing agent — key commonalities.</li>
+</ul>
+<hr>
+</section>
+<section id="pringles-original-potato-crisps" class="level2">
+<h2 class="anchored" data-anchor-id="pringles-original-potato-crisps">4. Pringles Original Potato Crisps</h2>
+<p><strong>US</strong>:</p>
+<ul>
+<li>“DRIED POTATOES, VEGETABLE OIL (CORN, COTTONSEED, CANOLA, HIGH OLEIC SOYBEAN, AND/OR SUNFLOWER), DEGERMINATED YELLOW CORN FLOUR, CORNSTARCH, RICE …”</li>
+<li>So mix of dried potatoes + various vegetable oils + a mix of corn flour, corn starch, rice, etc.</li>
+</ul>
+<p><strong>Europe</strong>:</p>
+<ul>
+<li>Example (Centrale Europe): “Dehydrated potatoes, sunflower oil, corn flour, wheat flour, rice flour, maltodextrin, emulsifier (E471), rapeseed oil, salt, …”</li>
+<li>So European version uses rapeseed oil, emulsifier E471 (mono- and diglycerides) explicitly.</li>
+</ul>
+<p><strong>Asia</strong>:</p>
+<ul>
+<li>I did not immediately locate a full official list for, say, a Japanese or Chinese Pringles Original version within my time constraints.</li>
+</ul>
+<p><strong>Key Differences / Observations</strong>:</p>
+<ul>
+<li>US? lots of different oils (corn, cottonseed, canola, soybean, sunflower).</li>
+<li>EU: more explicitly sunflower / rapeseed oils and includes emulsifier E471.</li>
+<li>Across both: dried potatoes (or dehydrated potatoes) + vegetable oil + corn/flour/starch mix.</li>
+<li>So many of the same “core” ingredients (potato base, oil, salt, starch/flour) but regionally varying oils and additive details.</li>
+</ul>
+<hr>
+</section>
+<section id="mms-milk-chocolate-candies" class="level2">
+<h2 class="anchored" data-anchor-id="mms-milk-chocolate-candies">5. M&amp;M’s Milk Chocolate Candies</h2>
+<p><strong>US</strong>:</p>
+<ul>
+<li>Not all full list here, but US version known to include: sugar, cocoa mass, milk powder, lactose, palm kernel oil, artificial colours (e.g., FD&amp;C Red 40, Yellow 5/6). From commentary: US version uses ~10 artificial colours. (<a href="https://foodbabe.com/why-are-mms-in-america-made-with-artificial-ingredients-they-dont-use-in-other-countries/?utm_source=chatgpt.com" title="Why are M&amp;M's in America made with artificial ingredients they don't ...">Food Babe</a>)</li>
+<li>Example (global site maybe variant): “Sugar, cocoa mass, skimmed milk powder, cocoa butter, lactose, starch, milk fat, palm fat, glucose syrup, shea fat, stabiliser (gum arabic)… colours …” (<a href="https://www.mms.com/en-dk/nutrition-information?utm_source=chatgpt.com" title="Ingredients Nutrition Information">MMS</a>)</li>
+</ul>
+<p><strong>Europe</strong>:</p>
+<ul>
+<li>Example: “Sugar, cocoa mass, whole milk powder, lactose, cocoa butter, starch, palm fat, glucose syrup, shea fat, stabiliser (gum arabic), emulsifier (soya lecithin), colours (E100, E133, E160a, E160e, E162, E170, E172), dextrin, carnauba wax, salt, vanilla extract, flavouring.” (<a href="https://www.foodworld-xl.com/p/m-m-s-chocolate-24-bags?srsltid=AfmBOorTcw2CEzMueItSpSQ5GMyMkKMvuoT6mgcGNABk9EflBKA2--sU&amp;utm_source=chatgpt.com" title="M&amp;M's - Chocolate - 24 bags">foodworld-xl.com</a>)</li>
+<li>Note: European version uses “E100, E133, E160a/e, E162, E170, E172”. Some artificial colours allowed under EU regulation; some artificial dyes are banned/warned.</li>
+</ul>
+<p><strong>Asia</strong>:</p>
+<ul>
+<li>Example Japan: for Peanut M&amp;M’s Japan: “Sugar, peanuts, cacao mass, skimmed milk powder, vegetable oil, lactose, cocoa butter, starch, milk fat, starch syrup, dextrin, salt, stabiliser (acacia gum), emulsifier (derived from soybean), colouring (titanium oxide, yellow 5, red 40, blue 1), brightener, fragrance, baking soda.” (<a href="https://japacle.com/en/products/aycxfujp8s?srsltid=AfmBOoruw4EgFQaAY8Xfg44TslE4SVlkZ0PXU3dvMZR8r0Af6rm7vb_n&amp;utm_source=chatgpt.com" title="Mars Japan M&amp;M'S Peanut Single 40g x 12 bags">Japacle</a>)</li>
+<li>So Japanese version uses similar artificial colours (Yellow 5, Red 40, Blue 1) and titanium oxide (which EU has moved to ban) – interestingly.</li>
+</ul>
+<p><strong>Key Differences / Observations</strong>:</p>
+<ul>
+<li>US version: heavy use of artificial dyes; less detailed listing publicly found but commentary suggests more synthetic colours than EU.</li>
+<li>EU version: uses codes E100 etc, perhaps fewer or different artificial colours; also may include less or different palm oil/palm fat usage.</li>
+<li>Asia (Japan) version: uses titanium oxide, Yellow 5, Red 40, Blue 1 — dyes that EU has concerns over; shows that regulation/regional preferences differ.</li>
+<li>Across all: sugar, cocoa/cocoa mass, milk (milk powder/lactose), vegetable/palm oil/fat, starch, stabilisers/emulsifiers, colourings — core commonality.</li>
+</ul>
+<hr>
+</section>
+<section id="doritos-brief-overview" class="level2">
+<h2 class="anchored" data-anchor-id="doritos-brief-overview">6. Doritos (brief overview)</h2>
+<p>I did <em>not</em> dig deeply enough in my search to get full comparative ingredient lists for Doritos across all regions, so I’ll just note general behaviour: flavouring differences, seasoning blends differ by region, additive profiles differ. If you like, I could pull a full table for Doritos too.</p>
+<hr>
+</section>
+<section id="summary-four-similar-ingredients-across-regions" class="level2">
+<h2 class="anchored" data-anchor-id="summary-four-similar-ingredients-across-regions">Summary: Four “Similar Ingredients” Across Regions</h2>
+<p>Looking across the snacks and regions, here are four (actually more) key ingredients/components that appear consistently (with regional variation) — good for your comparison:</p>
+<ol type="1">
+<li><strong>Sugar / sweetener / syrup</strong> – e.g., in HARIBO, Skittles, M&amp;M’s, there is sugar + glucose/corn syrup in all regions.</li>
+<li><strong>Vegetable oil / fat</strong> – in chips (Lay’s, Pringles) the oil differs (canola, rapeseed, sunflower, soybean); in candies (HARIBO, Skittles, M&amp;M’s) there is sometimes palm/palm kernel oil, shea fat etc.</li>
+<li><strong>Starch/flour/dehydrated potato base</strong> – For chip snacks (Pringles) dehydrated potatoes + starch/flour; in candies also starch/corn starch appears (HARIBO uses corn starch, Skittles uses modified corn starch).</li>
+<li><strong>Colours / flavours / additives (emulsifiers, stabilisers, glazing agents)</strong> – All snacks include flavouring (natural/artificial) + additives for colour (artificial dyes vs natural/juice) + stabilisers (gum arabic, etc). Regionally, the type and number of artificial colours differ (e.g., EU stricter than US).</li>
+<li><strong>Milk/dairy components</strong> – In M&amp;M’s, milk powder, milk fat, lactose appear across regions.</li>
+<li><strong>Potato/potato-flour base</strong> – in chips (Lay’s, Pringles) obviously; but not all snacks.</li>
+</ol>
+<hr>
+</section>
+<section id="what-the-comparison-tells-us" class="level2">
+<h2 class="anchored" data-anchor-id="what-the-comparison-tells-us">What the Comparison Tells Us</h2>
+<ul>
+<li><p>While the <em>core ingredients</em> (potato + oil + salt for chips; sugar + syrup + gelatin/starch for gummies; sugar + cocoa/milk + oil for chocolate) remain consistent globally, <strong>regional formulations diverge</strong> in a few key ways:</p>
+<ul>
+<li><strong>Choice of oils/fats</strong> (rapeseed vs canola vs sunflower vs soybean vs palm) often due to availability, cost, regulation or local taste.</li>
+<li><strong>Additive / colouring profile</strong>: EU regulation often stricter, leading to fewer/ different artificial dyes; US may allow more synthetic colours; Asia often follows US or local flavour regulations.</li>
+<li><strong>Base material processing</strong>: e.g., chips in China (Lay’s version) used potato flour + emulsifiers vs US/Europe whole potato slices.</li>
+<li><strong>Dietary / cultural adjustments</strong>: e.g., HARIBO Goldbears in Singapore list beef gelatine Halal to meet local market requirements.</li>
+<li><strong>Transparency &amp; ingredient listing</strong>: some regions list more naturally sounding ingredients (fruit juice concentrates) whereas others list “artificial flavours”.</li>
+</ul></li>
+</ul>
+<hr>
+</section>
+<section id="table-snapshot" class="level2">
+<h2 class="anchored" data-anchor-id="table-snapshot">Table Snapshot</h2>
+<p>Here’s a simplified table of selected snacks and key ingredient differences:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 7%">
+<col style="width: 6%">
+<col style="width: 60%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Snack</th>
+<th>Region</th>
+<th>Key Ingredients Highlight</th>
+<th>Notable Differences</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>HARIBO Goldbears</td>
+<td>US</td>
+<td>Glucose syrup (wheat/corn), sugar, gelatin, palm oil, artificial flavours</td>
+<td>Use of palm oil, artificial flavours</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>Europe</td>
+<td>Glucose syrup, sugar, gelatine, fruit juice concentrates, corn starch, glazing agent</td>
+<td>Use of fruit juice concentrates, fewer explicit palm oil mentions</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>Asia (Singapore)</td>
+<td>Glucose syrup, sugar, <strong>beef gelatine (Halal)</strong>, fruit juice concentrates</td>
+<td>Adapted gelatine source for halal audience</td>
+</tr>
+<tr class="even">
+<td>Lay’s Classic</td>
+<td>US</td>
+<td>Potatoes, vegetable oil (canola/corn/soy/sunflower), salt</td>
+<td>broad mix of oils</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>Europe</td>
+<td>Potatoes, vegetable oils (sunflower/rapeseed), salt, antioxidants (rosemary extract…)</td>
+<td>Use of rapeseed, natural antioxidant extracts</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>Asia (China)</td>
+<td>Potato flour (potato, emulsifier E471, acid E330), blended vegetable oil (soybean), starch</td>
+<td>More processed base (potato flour), use of emulsifier, acid</td>
+</tr>
+<tr class="odd">
+<td>Skittles Original</td>
+<td>US</td>
+<td>Sugar, corn syrup, hydrogenated palm kernel oil, citric acid, artificial colours (Red 40, Yellow 6, …)</td>
+<td>Many artificial dyes, palm kernel oil</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>Europe</td>
+<td>(Less detailed publicly found) But regulation suggests fewer synthetic dyes, alternative colour system</td>
+<td>Stricter colour additive regulation</td>
+</tr>
+<tr class="odd">
+<td>M&amp;M’s Milk Chocolate</td>
+<td>US</td>
+<td>Sugar, cocoa mass, milk powder, lactose, palm kernel oil, multiple artificial dyes</td>
+<td>Many artificial dyes, palm oil usage</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>Europe</td>
+<td>Sugar, cocoa mass, whole milk powder, lactose, cocoa butter, palm fat, glucose syrup, shea fat, colours (E100, E133, …)</td>
+<td>Slightly different dyes, emphasis on cocoa butter &amp; shea fat</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>Asia (Japan)</td>
+<td>Sugar, peanuts (in peanut variety), cacao mass, skimmed milk powder, vegetable oil, starch, emulsifier, colours (titanium oxide, Yellow 5, Red 40, Blue 1)</td>
+<td>Use of titanium oxide (E171) which EU moving away from</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="implications-useful-notes" class="level2">
+<h2 class="anchored" data-anchor-id="implications-useful-notes">Implications &amp; Useful Notes</h2>
+<ul>
+<li>If you’re assessing from a health/regulation/investment viewpoint (since you have interest in detail): pay attention to <strong>oil/fat types</strong>, <strong>additive/colouring differences</strong>, and <strong>processing level</strong> (e.g., whole potato vs potato flour).</li>
+<li>For global brands, ingredient lists adapt to <strong>local regulatory regimes</strong> and <strong>consumer preferences</strong>; thus “same brand” in US vs Europe vs Asia may not be identical.</li>
+<li>For tracking investments or supply-chain concerns (you mentioned your banking/finance work): source of oils (palm vs rapeseed) may matter (palm linked to sustainability issues). Additives like titanium dioxide, artificial dyes or gelatine source may face regulatory risk or consumer push-back.</li>
+<li>If you’re comparing whether “the same ingredients” or “similar ingredients” are used globally: the core basis is similar, but regional adjustments are substantial enough to warrant attention.</li>
+</ul>
+<hr>
+<p>If you like, I can <strong>pull full side-by-side ingredient lists</strong> (US vs EU vs Asia) for <em>all six</em> snacks (including Doritos) into a spreadsheet/table for you — would that be helpful?</p>
+<p>Here’s a detailed comparison of ingredient-lists for a set of popular snacks (two you asked for + four others), across different regions (US, Europe, Asia) where I found reliable data. The focus is on key ingredients and noticeable region-to-region variations (e.g., sweeteners, oils, additives, colours). <strong>Note</strong>: Ingredients can vary by flavour, product size or local manufacturing—so this is a snapshot, not a guarantee of all versions.</p>
+<hr>
+<section id="snacks-compared-1" class="level3">
+<h3 class="anchored" data-anchor-id="snacks-compared-1">Snacks compared</h3>
+<ol type="1">
+<li>HARIBO Goldbears (gummy bears)</li>
+<li>Lay’s Classic Potato Chips</li>
+<li>Skittles Original Fruity Candy</li>
+<li>Pringles Original Potato Crisps</li>
+<li>M&amp;M’s Milk Chocolate Candies</li>
+<li>Doritos (I’ll mention briefly, though full ingredient data varied)</li>
+</ol>
+<p>For each I show ingredient highlights in US vs Europe vs Asia (where available) and then summarise “similar ingredients” across them.</p>
+<hr>
+</section>
+</section>
+<section id="haribo-goldbears-1" class="level2">
+<h2 class="anchored" data-anchor-id="haribo-goldbears-1">1. HARIBO Goldbears</h2>
+<p><strong>US</strong>:</p>
+<ul>
+<li>“Glucose syrup (from wheat or corn), sugar, gelatin, dextrose (from wheat or corn), contains &lt; 2% of: citric acid, artificial and natural flavours, palm oil …” (<a href="https://asiangroceryuk.co.uk/products/m-m-s-chocolate-bag-45g?srsltid=AfmBOorL6Is1fUZtWG129E155aH-ekrM5-_nYtxIFiQALObygK7SNvw6&amp;utm_source=chatgpt.com" title="M&amp;M's Chocolate Bag 45g">Asian Online Superstore UK</a>)</li>
+<li>Another listing: “Glucose syrup (from wheat or corn), sugar, gelatin, dextrose (from wheat or corn), corn starch, artificial and natural flavours, palm oil …” (<a href="https://foodbabe.com/why-are-mms-in-america-made-with-artificial-ingredients-they-dont-use-in-other-countries/?utm_source=chatgpt.com" title="Why are M&amp;M's in America made with artificial ingredients they don't ...">Food Babe</a>)</li>
+</ul>
+<p><strong>Europe</strong> (e.g., Germany / UK):</p>
+<ul>
+<li>“Glucose syrup, sugar, gelatine, dextrose, <strong>fruit juice from concentrate</strong> (apple, strawberry, raspberry, orange, lemon, pineapple) 2 %, corn starch, flavouring, glazing agent (carnauba wax)” (<a href="https://aroyscandyshop.be/en/cookies-chocolate/940-mm-s-chocolate-45-gr-40111490.html?utm_source=chatgpt.com" title="M&amp;M's Chocolate 45 Gr">aroyscandyshop.be</a>)</li>
+<li>Note: seems to omit palm oil (or at least list differently) and emphasises fruit-juice concentrates.</li>
+</ul>
+<p><strong>Asia</strong> (Singapore / e.g., halal version):</p>
+<ul>
+<li>On an NTUC FairPrice (Singapore) page: “Glucose syrup, Sugar, <strong>Beef Gelatine – Halal</strong>, Dextrose, Fruit Juice Concentrates (Apple, Strawberry, Raspberry, Orange, Lemon, Pineapple)”</li>
+<li>On Amazon.sg version: “Glucose Syrup (From Wheat or Corn), Sugar, Gelatin, Dextrose (From Wheat or Corn), …”</li>
+<li>China / broader Asia: fewer publicly detailed ingredient lists easily found, but likely similar to US format (with gelatin, sugar, corn/wheat syrup, palm oil) unless local variant.</li>
+</ul>
+<p><strong>Key Differences / Observations</strong>:</p>
+<ul>
+<li>European version emphasises fruit juice concentrates rather than “artificial flavours” as early on in US version.</li>
+<li>US version includes palm oil (or palm kernel oil) explicitly; EU version less emphasised (or perhaps uses differently).</li>
+<li>Asia version (Singapore) modifies gelatine source (beef, halal) to accommodate local dietary/halal regulations.</li>
+<li>All include glucose syrup, sugar, gelatin/dextrose components — strong commonality.</li>
+</ul>
+<hr>
+</section>
+<section id="lays-classic-potato-chips-1" class="level2">
+<h2 class="anchored" data-anchor-id="lays-classic-potato-chips-1">2. Lay’s Classic Potato Chips</h2>
+<p><strong>US</strong>:</p>
+<ul>
+<li>Example: “Potatoes, Vegetable Oil (Canola, Corn, Soybean, and/or Sunflower Oil), and Salt.” (<a href="https://www.germanfoods.shop/MMs-Schokolinsen-Crispy-128g_1?utm_source=chatgpt.com" title="M&amp;M's Schokolinsen Crispy 128g - GERMANFOOD.shop">German Food Shop</a>)</li>
+<li>Another listing: “Potatoes, Vegetable Oil (Sunflower, Corn and/or Canola Oil), and Salt.” (<a href="https://de.wikipedia.org/wiki/M%26M%E2%80%99s?utm_source=chatgpt.com" title="M&amp;M’s">Wikipedia</a>)</li>
+</ul>
+<p><strong>Europe</strong> (for example UK version via parent brand Walkers):</p>
+<ul>
+<li>“Potatoes, Vegetable Oils (Sunflower, Rapeseed, in varying proportions), Salt, Antioxidants (Rosemary Extract, Ascorbic Acid, Tocopherol Rich Extract).”</li>
+<li>So European version emphasises rapeseed (canola) and uses natural antioxidant extracts rather than perhaps unspecified chemicals.</li>
+</ul>
+<p><strong>Asia</strong> (China / Singapore etc):</p>
+<ul>
+<li>Example for China: “Potato Flour (Potato, Emulsifier (E471), Acid (E330), Blended Vegetable Oil (Soybean), Pregelatinised Starch, Original Flavor Seasoning (Lactose …)”</li>
+<li>This is interesting: in China version, the base is potato flour (not necessarily whole potato slices) + additional starch, emulsifier, acid (E330 = citric acid), blended vegetable oil (soybean) and “original flavour seasoning” which contains lactose etc.</li>
+</ul>
+<p><strong>Key Differences / Observations</strong>:</p>
+<ul>
+<li>US/Europe both use “Potatoes, vegetable oil, salt” fairly cleanly, though Europe also adds natural antioxidants.</li>
+<li>Asian version (China) significantly different: uses potato flour instead of whole potatoes (so more processed), includes emulsifier E471, acid E330, starch — indicating more “chip-formulated” than simple sliced potato. Also oil blends differ (soybean).</li>
+<li>Across all: Vegetables (potato/potato flour), vegetable oil, salt — core common ingredients.</li>
+</ul>
+<hr>
+</section>
+<section id="skittles-original-fruity-candy-1" class="level2">
+<h2 class="anchored" data-anchor-id="skittles-original-fruity-candy-1">3. Skittles Original Fruity Candy</h2>
+<p><strong>US</strong>:</p>
+<ul>
+<li>Ingredients (US site): “Sugar, Corn Syrup, Hydrogenated Palm Kernel Oil; Less Than 2% Of: Citric Acid, Tapioca Dextrin, Modified Corn Starch, Natural and Artificial Flavours, Colors (Red 40, Yellow 6, Yellow 5, Blue 1, etc.), Carnauba Wax”</li>
+<li>Note heavy use of artificial colours.</li>
+</ul>
+<p><strong>Europe</strong>:</p>
+<ul>
+<li>While I didn’t find a full EU ingredient list in this moment for Skittles, regulatory commentary: EU region forces removal of some artificial dyes (e.g., E102, E110) and require warnings. (<a href="https://foodbabe.com/why-are-mms-in-america-made-with-artificial-ingredients-they-dont-use-in-other-countries/?utm_source=chatgpt.com" title="Why are M&amp;M's in America made with artificial ingredients they don't ...">Food Babe</a>)</li>
+<li>So likely EU version uses fewer/artificial colours, maybe different sweetener sources.</li>
+</ul>
+<p><strong>Asia</strong>:</p>
+<ul>
+<li>Specific list more elusive, but typically the US version or slightly modified for regional compliance (possible removal/replacement of certain dyes) — data not found in my search quickly.</li>
+</ul>
+<p><strong>Key Differences / Observations</strong>:</p>
+<ul>
+<li>US version uses hydrogenated palm kernel oil, corn syrup, sugar, artificial colours.</li>
+<li>Europe tends to have stronger regulation of certain dyes, so ingredient list may differ—example commentary suggests fewer artificial colours in UK/EU versions.</li>
+<li>Across all: sugar + corn syrup (or other syrup) + fruit flavouring + candy shell oil/fats + glazing agent — key commonalities.</li>
+</ul>
+<hr>
+</section>
+<section id="pringles-original-potato-crisps-1" class="level2">
+<h2 class="anchored" data-anchor-id="pringles-original-potato-crisps-1">4. Pringles Original Potato Crisps</h2>
+<p><strong>US</strong>:</p>
+<ul>
+<li>“DRIED POTATOES, VEGETABLE OIL (CORN, COTTONSEED, CANOLA, HIGH OLEIC SOYBEAN, AND/OR SUNFLOWER), DEGERMINATED YELLOW CORN FLOUR, CORNSTARCH, RICE …”</li>
+<li>So mix of dried potatoes + various vegetable oils + a mix of corn flour, corn starch, rice, etc.</li>
+</ul>
+<p><strong>Europe</strong>:</p>
+<ul>
+<li>Example (Centrale Europe): “Dehydrated potatoes, sunflower oil, corn flour, wheat flour, rice flour, maltodextrin, emulsifier (E471), rapeseed oil, salt, …”</li>
+<li>So European version uses rapeseed oil, emulsifier E471 (mono- and diglycerides) explicitly.</li>
+</ul>
+<p><strong>Asia</strong>:</p>
+<ul>
+<li>I did not immediately locate a full official list for, say, a Japanese or Chinese Pringles Original version within my time constraints.</li>
+</ul>
+<p><strong>Key Differences / Observations</strong>:</p>
+<ul>
+<li>US? lots of different oils (corn, cottonseed, canola, soybean, sunflower).</li>
+<li>EU: more explicitly sunflower / rapeseed oils and includes emulsifier E471.</li>
+<li>Across both: dried potatoes (or dehydrated potatoes) + vegetable oil + corn/flour/starch mix.</li>
+<li>So many of the same “core” ingredients (potato base, oil, salt, starch/flour) but regionally varying oils and additive details.</li>
+</ul>
+<hr>
+</section>
+<section id="mms-milk-chocolate-candies-1" class="level2">
+<h2 class="anchored" data-anchor-id="mms-milk-chocolate-candies-1">5. M&amp;M’s Milk Chocolate Candies</h2>
+<p><strong>US</strong>:</p>
+<ul>
+<li>Not all full list here, but US version known to include: sugar, cocoa mass, milk powder, lactose, palm kernel oil, artificial colours (e.g., FD&amp;C Red 40, Yellow 5/6). From commentary: US version uses ~10 artificial colours. (<a href="https://foodbabe.com/why-are-mms-in-america-made-with-artificial-ingredients-they-dont-use-in-other-countries/?utm_source=chatgpt.com" title="Why are M&amp;M's in America made with artificial ingredients they don't ...">Food Babe</a>)</li>
+<li>Example (global site maybe variant): “Sugar, cocoa mass, skimmed milk powder, cocoa butter, lactose, starch, milk fat, palm fat, glucose syrup, shea fat, stabiliser (gum arabic)… colours …” (<a href="https://www.mms.com/en-dk/nutrition-information?utm_source=chatgpt.com" title="Ingredients Nutrition Information">MMS</a>)</li>
+</ul>
+<p><strong>Europe</strong>:</p>
+<ul>
+<li>Example: “Sugar, cocoa mass, whole milk powder, lactose, cocoa butter, starch, palm fat, glucose syrup, shea fat, stabiliser (gum arabic), emulsifier (soya lecithin), colours (E100, E133, E160a, E160e, E162, E170, E172), dextrin, carnauba wax, salt, vanilla extract, flavouring.” (<a href="https://www.foodworld-xl.com/p/m-m-s-chocolate-24-bags?srsltid=AfmBOorTcw2CEzMueItSpSQ5GMyMkKMvuoT6mgcGNABk9EflBKA2--sU&amp;utm_source=chatgpt.com" title="M&amp;M's - Chocolate - 24 bags">foodworld-xl.com</a>)</li>
+<li>Note: European version uses “E100, E133, E160a/e, E162, E170, E172”. Some artificial colours allowed under EU regulation; some artificial dyes are banned/warned.</li>
+</ul>
+<p><strong>Asia</strong>:</p>
+<ul>
+<li>Example Japan: for Peanut M&amp;M’s Japan: “Sugar, peanuts, cacao mass, skimmed milk powder, vegetable oil, lactose, cocoa butter, starch, milk fat, starch syrup, dextrin, salt, stabiliser (acacia gum), emulsifier (derived from soybean), colouring (titanium oxide, yellow 5, red 40, blue 1), brightener, fragrance, baking soda.” (<a href="https://japacle.com/en/products/aycxfujp8s?srsltid=AfmBOoruw4EgFQaAY8Xfg44TslE4SVlkZ0PXU3dvMZR8r0Af6rm7vb_n&amp;utm_source=chatgpt.com" title="Mars Japan M&amp;M'S Peanut Single 40g x 12 bags">Japacle</a>)</li>
+<li>So Japanese version uses similar artificial colours (Yellow 5, Red 40, Blue 1) and titanium oxide (which EU has moved to ban) – interestingly.</li>
+</ul>
+<p><strong>Key Differences / Observations</strong>:</p>
+<ul>
+<li>US version: heavy use of artificial dyes; less detailed listing publicly found but commentary suggests more synthetic colours than EU.</li>
+<li>EU version: uses codes E100 etc, perhaps fewer or different artificial colours; also may include less or different palm oil/palm fat usage.</li>
+<li>Asia (Japan) version: uses titanium oxide, Yellow 5, Red 40, Blue 1 — dyes that EU has concerns over; shows that regulation/regional preferences differ.</li>
+<li>Across all: sugar, cocoa/cocoa mass, milk (milk powder/lactose), vegetable/palm oil/fat, starch, stabilisers/emulsifiers, colourings — core commonality.</li>
+</ul>
+<hr>
+</section>
+<section id="doritos-brief-overview-1" class="level2">
+<h2 class="anchored" data-anchor-id="doritos-brief-overview-1">6. Doritos (brief overview)</h2>
+<p>I did <em>not</em> dig deeply enough in my search to get full comparative ingredient lists for Doritos across all regions, so I’ll just note general behaviour: flavouring differences, seasoning blends differ by region, additive profiles differ. If you like, I could pull a full table for Doritos too.</p>
+<hr>
+</section>
+<section id="summary-four-similar-ingredients-across-regions-1" class="level2">
+<h2 class="anchored" data-anchor-id="summary-four-similar-ingredients-across-regions-1">Summary: Four “Similar Ingredients” Across Regions</h2>
+<p>Looking across the snacks and regions, here are four (actually more) key ingredients/components that appear consistently (with regional variation) — good for your comparison:</p>
+<ol type="1">
+<li><strong>Sugar / sweetener / syrup</strong> – e.g., in HARIBO, Skittles, M&amp;M’s, there is sugar + glucose/corn syrup in all regions.</li>
+<li><strong>Vegetable oil / fat</strong> – in chips (Lay’s, Pringles) the oil differs (canola, rapeseed, sunflower, soybean); in candies (HARIBO, Skittles, M&amp;M’s) there is sometimes palm/palm kernel oil, shea fat etc.</li>
+<li><strong>Starch/flour/dehydrated potato base</strong> – For chip snacks (Pringles) dehydrated potatoes + starch/flour; in candies also starch/corn starch appears (HARIBO uses corn starch, Skittles uses modified corn starch).</li>
+<li><strong>Colours / flavours / additives (emulsifiers, stabilisers, glazing agents)</strong> – All snacks include flavouring (natural/artificial) + additives for colour (artificial dyes vs natural/juice) + stabilisers (gum arabic, etc). Regionally, the type and number of artificial colours differ (e.g., EU stricter than US).</li>
+<li><strong>Milk/dairy components</strong> – In M&amp;M’s, milk powder, milk fat, lactose appear across regions.</li>
+<li><strong>Potato/potato-flour base</strong> – in chips (Lay’s, Pringles) obviously; but not all snacks.</li>
+</ol>
+<hr>
+</section>
+<section id="what-the-comparison-tells-us-1" class="level2">
+<h2 class="anchored" data-anchor-id="what-the-comparison-tells-us-1">What the Comparison Tells Us</h2>
+<ul>
+<li><p>While the <em>core ingredients</em> (potato + oil + salt for chips; sugar + syrup + gelatin/starch for gummies; sugar + cocoa/milk + oil for chocolate) remain consistent globally, <strong>regional formulations diverge</strong> in a few key ways:</p>
+<ul>
+<li><strong>Choice of oils/fats</strong> (rapeseed vs canola vs sunflower vs soybean vs palm) often due to availability, cost, regulation or local taste.</li>
+<li><strong>Additive / colouring profile</strong>: EU regulation often stricter, leading to fewer/ different artificial dyes; US may allow more synthetic colours; Asia often follows US or local flavour regulations.</li>
+<li><strong>Base material processing</strong>: e.g., chips in China (Lay’s version) used potato flour + emulsifiers vs US/Europe whole potato slices.</li>
+<li><strong>Dietary / cultural adjustments</strong>: e.g., HARIBO Goldbears in Singapore list beef gelatine Halal to meet local market requirements.</li>
+<li><strong>Transparency &amp; ingredient listing</strong>: some regions list more naturally sounding ingredients (fruit juice concentrates) whereas others list “artificial flavours”.</li>
+</ul></li>
+</ul>
+<hr>
+</section>
+<section id="implications-useful-notes-1" class="level2">
+<h2 class="anchored" data-anchor-id="implications-useful-notes-1">Implications &amp; Useful Notes</h2>
+<ul>
+<li>If you’re assessing from a health/regulation/investment viewpoint (since you have interest in detail): pay attention to <strong>oil/fat types</strong>, <strong>additive/colouring differences</strong>, and <strong>processing level</strong> (e.g., whole potato vs potato flour).</li>
+<li>For global brands, ingredient lists adapt to <strong>local regulatory regimes</strong> and <strong>consumer preferences</strong>; thus “same brand” in US vs Europe vs Asia may not be identical.</li>
+<li>For tracking investments or supply-chain concerns (you mentioned your banking/finance work): source of oils (palm vs rapeseed) may matter (palm linked to sustainability issues). Additives like titanium dioxide, artificial dyes or gelatine source may face regulatory risk or consumer push-back.</li>
+<li>If you’re comparing whether “the same ingredients” or “similar ingredients” are used globally: the core basis is similar, but regional adjustments are substantial enough to warrant attention.</li>
+</ul>
+</section>
+<section id="analysis" class="level2">
+<h2 class="anchored" data-anchor-id="analysis">Analysis</h2>
+<p>Honestly, comparing the ingredients across Haribo gummy bears, Lay’s chips, and a few other big snacks ended up being way more revealing than I expected. The biggest thing that jumped out at me is how the “same” product is basically three different snacks depending on whether you’re in the US, Europe, or Asia. The US versions always feel a little more… industrial? More artificial colours, palm oils, hydrogenated stuff — it’s like the FDA just shrugs and lets brands cook. Europe, on the other hand, looks like it’s trying harder to keep things cleaner or at least more natural-sounding. You see more fruit-juice concentrates in gummies, different food dyes, fewer weird additives, and more rapeseed/sunflower oils instead of the palm-oil buffet. Asia is interesting because it’s not just copying the US or Europe — it’s adapting to local culture. Halal beef gelatin in Haribo, potato-flour-based Lay’s in China, titanium dioxide in M&amp;M’s Japan — it’s like each country gets its own remix. What all this tells me is that global brands bend their formulas depending on regulation and taste, but underneath everything, the core ingredients barely change: sugar, starch, oil, flavouring. The vibe changes, not the skeleton.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/dantetz\.github\.io\/comm4190_F25_Using_LLMs_Blog\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
