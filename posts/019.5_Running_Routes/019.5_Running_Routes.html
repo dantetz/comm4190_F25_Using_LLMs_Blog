@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.26">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Dante">
+<meta name="dcterms.date" content="2025-11-22">
+<meta name="description" content="Asking LLM’s to plan me an itinerary for a dream trip to Namibia">
+
+<title>Namibia Planning – My Explorations with LLMs</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-0b37c64f34216b628666a8dac638b53b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed fullcontent quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">My Explorations with LLMs</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com"> <i class="bi bi-twitter" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Namibia Planning</h1>
+                  <div>
+        <div class="description">
+          Asking LLM’s to plan me an itinerary for a dream trip to Namibia
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">LLMs</div>
+                <div class="quarto-category">Learning</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Dante </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">November 22, 2025</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+<section id="prompt" class="level2">
+<h2 class="anchored" data-anchor-id="prompt">Prompt</h2>
+<p><span style="background-color: yellow ; padding: 5px;">Please map out running routes, starting from 3700 Walnut Street in Philadelphia for 3, 5, 7, and 10 mile runs that also end at 3700 Walnut street. Make the runs as scenic as possible and give me a few options for each length.</span></p>
+<p>Nice, this is a fun one—running out of 3700 Walnut is elite.</p>
+<p><strong>Assumptions</strong></p>
+<ul>
+<li>Start/finish = <strong>Pottruck / 3700 Walnut St (37th &amp; Walnut)</strong>.</li>
+<li>You’re fine using bridges + Schuylkill River Trail (SRT) + Fairmount Park.</li>
+<li>Distances are <strong>approximate</strong> (good enough for training, but sanity-check on Strava/MapMyRun).</li>
+</ul>
+<p>The Penn Club XCTF site actually has a bunch of standard routes starting/ending at 37th &amp; Walnut, which I’m using as the backbone here. (<a href="https://pennclubxctf.wordpress.com/routes/" title="Routes – Penn Club XCTF">Penn Club XCTF</a>)</p>
+<hr>
+</section>
+<section id="mile-options-3.03.3-mi" class="level2">
+<h2 class="anchored" data-anchor-id="mile-options-3.03.3-mi">3-mile options (~3.0–3.3 mi)</h2>
+<section id="a.-campus-walnut-bridge-srt-out-back-3.1" class="level3">
+<h3 class="anchored" data-anchor-id="a.-campus-walnut-bridge-srt-out-back-3.1">3A. Campus → Walnut Bridge → SRT out &amp; back (~3.1)</h3>
+<p><strong>Scenic:</strong> skyline + river views, almost all on the SRT.</p>
+<ol type="1">
+<li>Start at <strong>3700 Walnut</strong> and head east on Walnut to <strong>33rd St</strong>.</li>
+<li>Continue on Walnut over the <strong>Walnut Street Bridge</strong> onto the east bank.</li>
+<li>Drop down the ramp to the <strong>Schuylkill River Trail</strong> and turn <strong>left (north)</strong>.</li>
+<li>Run up the trail to just <strong>past the Art Museum area / Paine’s Park skate park</strong>, then turn around.</li>
+<li>Return south on the SRT, back up the Walnut ramp, and run west on Walnut to 37th.</li>
+</ol>
+<blockquote class="blockquote">
+<p>Tip: If your watch shows short, add a small campus loop (e.g., up 37th to Chestnut and back).</p>
+</blockquote>
+<hr>
+</section>
+<section id="b.-penn-park-south-street-bridge-loop-3.0" class="level3">
+<h3 class="anchored" data-anchor-id="b.-penn-park-south-street-bridge-loop-3.0">3B. Penn Park + South Street Bridge loop (~3.0)</h3>
+<p><strong>Scenic:</strong> Penn Park fields, Center City views from South Street Bridge.</p>
+<ol type="1">
+<li>From 3700 Walnut, go south on <strong>37th</strong> to <strong>Spruce</strong>.</li>
+<li>Continue east on Spruce to the <strong>entrance of Penn Park</strong>; loop <strong>around the outer path</strong> of Penn Park once.</li>
+<li>Exit toward the <strong>South Street Bridge</strong>, head up, and cross to the east side.</li>
+<li>Turn <strong>left</strong> onto the SRT, follow it north to the <strong>Walnut Street ramp</strong>.</li>
+<li>Run back west on Walnut to 37th.</li>
+</ol>
+<hr>
+</section>
+<section id="c.-woodlands-cemetery-loop-3.1" class="level3">
+<h3 class="anchored" data-anchor-id="c.-woodlands-cemetery-loop-3.1">3C. Woodlands Cemetery loop (~3.1)</h3>
+<p>Based on the Penn Club <strong>“Woodlands – 2 miles”</strong> route, just extended a bit on campus. (<a href="https://pennclubxctf.wordpress.com/routes/" title="Routes – Penn Club XCTF">Penn Club XCTF</a>)</p>
+<ol type="1">
+<li>From 3700 Walnut, go west on <strong>Walnut</strong> to <strong>40th St</strong>.</li>
+<li>Turn <strong>left</strong> on 40th, enter <strong>The Woodlands</strong> at the main gate; run a loop on the internal road (do one full perimeter).</li>
+<li>Exit back on 40th, turn <strong>right</strong> on <strong>Spruce</strong>, then <strong>right</strong> again on <strong>36th</strong>.</li>
+<li>Take 36th north to Walnut, turn <strong>left</strong> back to 37th.</li>
+</ol>
+<p>Add a lap around campus green if you’re short of 3.</p>
+<hr>
+</section>
+</section>
+<section id="mile-options-5.05.5-mi" class="level2">
+<h2 class="anchored" data-anchor-id="mile-options-5.05.5-mi">5-mile options (~5.0–5.5 mi)</h2>
+<section id="a.-south-street-city-loop-5.0" class="level3">
+<h3 class="anchored" data-anchor-id="a.-south-street-city-loop-5.0">5A. South Street city loop (~5.0)</h3>
+<p>This is essentially Penn Club’s <strong>“South Street – 5 miles”</strong> route.</p>
+<ol type="1">
+<li>From 3700 Walnut, run <strong>east on Walnut</strong> over the Walnut Street Bridge.</li>
+<li>Continue straight to about <strong>18th–20th St</strong>, then drop south one block to <strong>Chestnut/Market</strong> corridor and work your way to <strong>Broad St</strong> (any east–west street works; use your watch).</li>
+<li>Head <strong>south on Broad</strong> to <strong>South Street</strong>.</li>
+<li>Turn <strong>right (west)</strong> on South; follow it all the way to the <strong>South Street Bridge</strong>.</li>
+<li>Cross the bridge, curve right past HUP/CHOP, then head back to campus via <strong>Spruce → 37th → Walnut</strong>.</li>
+</ol>
+<p>Lots of Center City neighborhoods + skyline + river.</p>
+<hr>
+</section>
+<section id="b.-zoo-loop-5.0" class="level3">
+<h3 class="anchored" data-anchor-id="b.-zoo-loop-5.0">5B. Zoo Loop (~5.0)</h3>
+<p>Based on the <strong>“Zoo Loop – 5 miles”</strong> map.</p>
+<ol type="1">
+<li>From 3700 Walnut, go east on <strong>Market</strong> to <strong>34th</strong>, then down the ramp to <strong>SRT</strong>.</li>
+<li>Turn <strong>left (north)</strong> and follow the SRT along the river, under the <strong>Art Museum</strong> area and toward the <strong>Zoo / Girard Ave</strong>.</li>
+<li>At the <strong>Girard Ave / Zoo area</strong>, cross the bridge or use the connecting paths (as on the Zoo Loop map) to switch to the <strong>west bank</strong>.</li>
+<li>Run <strong>south</strong> along the river path/MLK side until you can cross back (typically near the <strong>Spring Garden</strong> area) or use <strong>Market St</strong> bridge.</li>
+<li>Return to 37th &amp; Walnut via <strong>Market</strong>.</li>
+</ol>
+<p>Mostly river, bridges, and views of Boathouse Row/Museum.</p>
+<hr>
+</section>
+<section id="c.-art-museum-rocky-steps-loop-4.55.2" class="level3">
+<h3 class="anchored" data-anchor-id="c.-art-museum-rocky-steps-loop-4.55.2">5C. Art Museum / Rocky Steps loop (~4.5–5.2)</h3>
+<p>Adapted from the <strong>“Art Museum/Rocky Steps – 4.5 miles”</strong> route; just add a small campus loop. (<a href="https://pennclubxctf.wordpress.com/routes/" title="Routes – Penn Club XCTF">Penn Club XCTF</a>)</p>
+<ol type="1">
+<li>From 3700 Walnut, run east via <strong>Walnut or Market</strong> to the SRT.</li>
+<li>Take the SRT <strong>north</strong> to the <strong>Philadelphia Museum of Art / Rocky Steps</strong>. (<a href="https://www.visitphilly.com/articles/philadelphia/running-and-biking-trails-center-city-philadelphia/?utm_source=chatgpt.com" title="Best Running &amp; Biking Trails In Philadelphia">Visit Philadelphia</a>)</li>
+<li>Run up the steps (mandatory) and loop the plaza.</li>
+<li>Head back along the same SRT path and over Walnut/Market to campus.</li>
+<li>Add a short loop around <strong>Locust Walk</strong> or the <strong>Quad</strong> area to hit exactly ~5.</li>
+</ol>
+<hr>
+</section>
+</section>
+<section id="mile-options-7.07.5-mi" class="level2">
+<h2 class="anchored" data-anchor-id="mile-options-7.07.5-mi">7-mile options (~7.0–7.5 mi)</h2>
+<section id="a.-west-fairmount-gardens-7.0" class="level3">
+<h3 class="anchored" data-anchor-id="a.-west-fairmount-gardens-7.0">7A. West Fairmount Gardens (~7.0)</h3>
+<p>This matches Penn Club’s <strong>“West Fairmount Gardens – 7 miles”</strong> route in spirit.</p>
+<ol type="1">
+<li>From 3700 Walnut, go east on <strong>Market</strong> to the SRT.</li>
+<li>Run <strong>north</strong> on the west side of the river, cross onto <strong>MLK/West Fairmount</strong> via a bridge near the Art Museum or upstream.</li>
+<li>Continue northwest into <strong>West Fairmount Park</strong>, looping around the roads/trails near the <strong>Please Touch Museum</strong> and garden area (as in the West Fairmount Gardens map).</li>
+<li>Loop back toward the river and return via <strong>the same bridge</strong> and <strong>SRT</strong>.</li>
+<li>Finish at 37th &amp; Walnut.</li>
+</ol>
+<p>Very green, with rolling park roads, fewer cars, and big views over the river.</p>
+<hr>
+</section>
+<section id="b.-mlk-via-black-road-7-ish" class="level3">
+<h3 class="anchored" data-anchor-id="b.-mlk-via-black-road-7-ish">7B. MLK via “Black Road” (~7-ish)</h3>
+<p>A classic Penn workout route (Penn Club calls it <strong>“MLK via Black Road – 7ish miles”</strong>). (<a href="https://pennclubxctf.wordpress.com/routes/" title="Routes – Penn Club XCTF">Penn Club XCTF</a>)</p>
+<ol type="1">
+<li>From 3700 Walnut, go to SRT (Walnut/Market).</li>
+<li>Run <strong>north</strong> on the SRT to the <strong>Art Museum</strong>.</li>
+<li>Cross to the <strong>MLK Drive</strong> side and follow the river path west/northwest.</li>
+<li>Turn into <strong>Black Road</strong> (a wooded connector climbing into the park), follow it up to the park roads, then loop back down to MLK.</li>
+<li>Return the same way via MLK → Art Museum → SRT → Walnut/Market bridge → 37th.</li>
+</ol>
+<p>This has a nice mix of flat river path + a solid hill.</p>
+<hr>
+</section>
+<section id="c.-extended-zoo-loop-7.0" class="level3">
+<h3 class="anchored" data-anchor-id="c.-extended-zoo-loop-7.0">7C. Extended Zoo Loop (~7.0)</h3>
+<p>Take the 5-mile <strong>Zoo Loop</strong> and push it a bit farther upriver.</p>
+<ol type="1">
+<li>Follow <strong>Zoo Loop</strong> directions to the <strong>Zoo/Girard</strong> area.</li>
+<li>Instead of crossing back immediately, continue further <strong>up Kelly Drive or MLK Drive</strong> (pick one side) until your watch hits ~3.5 miles.</li>
+<li>Turn around and come back the same way, crossing back to Penn via Walnut/Market as before.</li>
+</ol>
+<p>The extra section north of the Zoo is pretty, quiet, and very “Philly runner” core.</p>
+<hr>
+</section>
+</section>
+<section id="mile-options-1010.5-mi" class="level2">
+<h2 class="anchored" data-anchor-id="mile-options-1010.5-mi">10-mile options (~10–10.5 mi)</h2>
+<section id="a.-strawberry-mansion-bridge-loop-10.5" class="level3">
+<h3 class="anchored" data-anchor-id="a.-strawberry-mansion-bridge-loop-10.5">10A. Strawberry Mansion Bridge loop (~10.5)</h3>
+<p>Straight from Penn Club’s <strong>“Strawberry Mansion – 10.5 miles”</strong> route.</p>
+<ol type="1">
+<li>From 3700 Walnut, take <strong>Market → SRT</strong> and head <strong>north</strong> along the river.</li>
+<li>Pass the <strong>Art Museum</strong>, Boathouse Row, and continue up <strong>Kelly Drive</strong> on the river path. (<a href="https://www.discoverphl.com/blog-post/your-guide-to-running-in-philadelphia/?utm_source=chatgpt.com" title="Your Guide to Running in Philadelphia">DiscoverPHL</a>)</li>
+<li>Continue all the way to the <strong>Strawberry Mansion Bridge</strong>, cross to the opposite bank.</li>
+<li>Return downstream on the <strong>MLK / East Fairmount Park side</strong>, eventually crossing back at one of the bridges (often near the Art Museum).</li>
+<li>Rejoin the SRT and run back to Walnut/Market → 37th.</li>
+</ol>
+<p>Water, trees, boathouses, bridges—super scenic and iconic.</p>
+<hr>
+</section>
+<section id="b.-kelly-drive-east-falls-loop-910-mi-from-penn" class="level3">
+<h3 class="anchored" data-anchor-id="b.-kelly-drive-east-falls-loop-910-mi-from-penn">10B. Kelly Drive East Falls loop (~9–10 mi from Penn)</h3>
+<p>The classic <strong>Kelly Drive “East Falls” loop</strong> is ~8.4–9 mi from the Art Museum; from Penn it’s just over 9–10. (<a href="https://www.discoverphl.com/blog-post/your-guide-to-running-in-philadelphia/?utm_source=chatgpt.com" title="Your Guide to Running in Philadelphia">DiscoverPHL</a>)</p>
+<ol type="1">
+<li>Run from 3700 Walnut to the <strong>Art Museum</strong> via SRT (~2 mi).</li>
+<li>Continue up <strong>Kelly Drive</strong> path along the river to <strong>Falls Bridge</strong>.</li>
+<li>Cross Falls Bridge, turn <strong>left</strong>, and come back on the <strong>MLK side</strong> of the river to the Art Museum.</li>
+<li>Finish by returning to Penn via SRT and Walnut/Market.</li>
+<li>If you’re short of 10, add a small loop around <strong>Penn Park</strong> before finishing.</li>
+</ol>
+<hr>
+</section>
+<section id="c.-fairmount-park-figure-eight-10-mi" class="level3">
+<h3 class="anchored" data-anchor-id="c.-fairmount-park-figure-eight-10-mi">10C. Fairmount Park figure-eight (~10 mi)</h3>
+<p>Combine West Fairmount + Strawberry Mansion vibes.</p>
+<ol type="1">
+<li>From 3700 Walnut → SRT → north to <strong>Art Museum</strong>.</li>
+<li>Cross to the <strong>MLK side</strong>, head up to near <strong>Black Road</strong>, climb into <strong>West Fairmount Park</strong>, and loop around the <strong>Please Touch Museum / Belmont Plateau</strong> roads.</li>
+<li>Drop back to the river and continue north to <strong>Strawberry Mansion Bridge</strong>, cross, then head back down <strong>Kelly Drive</strong>.</li>
+<li>Finish via SRT back to Walnut/Market → 37th.</li>
+</ol>
+<p>Use your watch to trim loops in West Fairmount so you land around 10.</p>
+<hr>
+</section>
+</section>
+<section id="final-notes" class="level2">
+<h2 class="anchored" data-anchor-id="final-notes">Final notes</h2>
+<ul>
+<li><p><strong>Safety:</strong></p>
+<ul>
+<li>Use lights/reflective gear at night, watch traffic at bridge ramps, and be careful on some darker park segments.</li>
+</ul></li>
+<li><p><strong>Measurement:</strong></p>
+<ul>
+<li>These are <strong>approximate</strong>, but all are standard runner loops; plug into <strong>Strava / MapMyRun / Garmin</strong> starting from “Pottruck / 3700 Walnut” to get exact mileage.</li>
+</ul></li>
+<li><p><strong>Weather &amp; river:</strong></p>
+<ul>
+<li>After storms, some SRT sections can be slick or briefly flooded—worth checking local reports. (<a href="https://www.schuylkillbanks.org/explore/trail-map?utm_source=chatgpt.com" title="Trail Map">Schuylkill Banks</a>)</li>
+</ul></li>
+</ul>
+<p>If you tell me your <strong>typical pace and what you’re training for</strong>, I can turn these into a weekly plan (e.g., which route on which day, where to put tempo/long run, etc.).</p>
+</section>
+<section id="reflection" class="level2">
+<h2 class="anchored" data-anchor-id="reflection">Reflection</h2>
+<p>Honestly, looking back at the results, I feel like the whole process was way smoother and more fun than I expected. I went in thinking I’d just get some straightforward, functional answers, but the level of detail and how everything connected ended up making the whole thing feel a lot more thoughtful. What I liked most was how easy it was to bounce between ideas, from job-market predictions to scenic running routes without losing the thread. It felt like having someone sitting next to me, pulling up maps, studies, and explanations at the exact moment I needed them.</p>
+<p>The AI parts were especially interesting. I’ve been thinking a lot about the future of work anyway, and getting a breakdown that wasn’t super doomsday or super sugar-coated helped me put the whole topic into perspective. Same with the running routes. I could picture myself actually running them, which made the planning way more real.</p>
+<p>Overall, the results felt practical but still kind of fun and personal, which I wasn’t really expecting. It made me realize how useful this can be for both big-picture thinking and the small, random things that make my life easier day-to-day.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/dantetz\.github\.io\/comm4190_F25_Using_LLMs_Blog\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
